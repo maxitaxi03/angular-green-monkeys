@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { MonkeyComponent } from './monkey/monkey.component';
-import { StatisticsComponent } from './statistics/statistics.component';
-import { TroopComponent } from './troop/troop.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
+import { TroopComponent } from './components/troop/troop.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MonkeyComponent,
+    TroopComponent,
     StatisticsComponent,
-    TroopComponent
   ],
   imports: [
     BrowserModule,
