@@ -27,6 +27,7 @@ export class Monkey {
     }
     eat(amount: number) {
         this.weight = this.weight * (amount / 100);
+        
     }
     ageMonk(): void {
        let mutChance = Utils.randomIntFromInterval(0.02, 1);

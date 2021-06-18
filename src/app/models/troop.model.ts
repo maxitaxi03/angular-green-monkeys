@@ -38,6 +38,18 @@ export class Troop {
     }
     populate(): void {
         while (this.size() <= Troop.maxSize) {
-            
+            let toAdd = Troop.maxSize - this.monkeys.length;
+            for (let i = 0; i < toAdd; i++) {
+                this.monkeys.push(new Monkey());
+            }
         }
     }
+    feedAll(): void {
+        this.monkeys.forEach(monkey => monkey.eat(10));
+    }
+    totalAge(): number {
+        this.monkeys.forEach(monkey => monkey.age += monkey.age)
+        
+        
+    }
+}
