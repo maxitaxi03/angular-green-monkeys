@@ -14,6 +14,8 @@ export class Monkey {
     isMutant: boolean = false;
     isAlive: boolean = true;
     gender: string;
+    numOfMutants: number = 0;
+    numOfNormals: number = 0;
 
 
     constructor(age?: number) {
@@ -33,8 +35,13 @@ export class Monkey {
        let mutChance = Utils.randomIntFromInterval(0.02, 1);
        this.age++;
 
-       if (mutChance <= 0.02)
+       if (mutChance <= 0.02) {
         this.isMutant = true;
+        this.numOfMutants++;
+     }
+        else {
+            this.numOfNormals++;
+     }
     }
     injure() {
         this.injuries++;
@@ -42,7 +49,27 @@ export class Monkey {
             this.isAlive = false;
         }
         return this.isAlive;
+    }/*
+    totAge(): number {
+        let totAge: number = 0;
+        totAge += this.age;
+        return totAge;
     }
-
+    totWeight(): number {
+        let totWeight: number = 0;
+        totWeight += this.weight;
+        return totWeight;
+    }
+    totMutants(): number {
+        let totMutants: number = 0;
+        totMutants += this.numOfMutants;
+        return totMutants;
+    }
+    totNormals(): number {
+        let totNormals: number = 0;
+        totNormals += this.numOfNormals;
+        return totNormals;
+        
+    } */
 
 }

@@ -48,8 +48,28 @@ export class Troop {
         this.monkeys.forEach(monkey => monkey.eat(10));
     }
     totalAge(): number {
-        this.monkeys.forEach(monkey => monkey.age += monkey.age)
-        
+        //this.monkeys.forEach(monkey => monkey.age += monkey.age);
+        let totalage: number = 0;
+        this.monkeys.forEach(monkey => totalage += monkey.age);
+        return totalage;
+    }
+    totalWeight(): number {
+        let totalweight: number = 0;
+        this.monkeys.forEach(monkey => totalweight += monkey.weight);
+        return totalweight;
+    }
+    totalMonkeys(): number {
+        return this.size();
+    }
+    totalMutants(): number{
+        let totalmutants: number = 0;
+        this.monkeys.forEach(monkey => totalmutants += monkey.numOfMutants);
+        return totalmutants;
+    }
+    totalNormals(): number {
+        let totalnormals: number = 0;
+        this.monkeys.forEach(monkey => totalnormals += monkey.numOfNormals);
+        return totalnormals;
         
     }
 }
