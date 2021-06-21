@@ -5,8 +5,12 @@ export class Troop {
     name: string;
     monkeys: Monkey[] = [];
 
-    constructor(name: string) {
-        this.name = name;
+    constructor(name?: string) {
+        if (name) {
+            this.name = name;
+            } else {
+                this.name = Utils.randomIntFromInterval(1000, 10000) + '';
+            }
     }
     size() : number {
         let size = this.monkeys.length;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Troop } from 'src/app/models/troop.model';
 
 @Component({
@@ -8,23 +8,25 @@ import { Troop } from 'src/app/models/troop.model';
 })
 export class TroopComponent implements OnInit {
   // troops: Troop[] = [];
-  troop: Troop = new Troop('');
+  // troop?: Troop;
+  @Input('troop') troop?: Troop;
   constructor() { }
 
   ngOnInit(): void {
+    
   }
  
   populate() {
-    this.troop.populate();
+    this.troop?.populate();
   }
   age() {
-    this.troop.ageAll();
+    this.troop?.ageAll();
   }
   feed() {
-    this.troop.feedAll();
+    this.troop?.feedAll();
   }
   engage() {
-    this.troop.engage();
+    this.troop?.engage();
   }
    /*
   populate() {

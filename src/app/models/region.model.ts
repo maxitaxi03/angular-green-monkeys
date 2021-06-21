@@ -1,5 +1,6 @@
 import { Troop } from './troop.model';
 import { Monkey } from './monkey.model';
+import { Utils } from './utils.model';
 
 export class Region {
     troops: Troop[] = [];
@@ -7,8 +8,12 @@ export class Region {
     name: string;
 
 
-    constructor(name: string) {
+    constructor(name?: string) {
+        if (name) {
         this.name = name;
+        } else {
+            this.name = Utils.randomIntFromInterval(1000, 10000) + '';
+        }
     }
     getMonkeysCount(): number {
         let monkeyCount = 0;
@@ -43,7 +48,13 @@ export class Region {
         let avgWeight = this.grandTotalWeight() / this.getMonkeysCount();
         return avgWeight;
     }
-    update(e: any) {
-        let selectedTroop = e.target.value;
+      createNewTroop(name?: string) {
+        let troop: Troop;
+        if (name) {
+            troop = new Troop(name);
+        } else {
+            troop = new Troop();
+        }
+        this.troops.push(troop);
       }
 }

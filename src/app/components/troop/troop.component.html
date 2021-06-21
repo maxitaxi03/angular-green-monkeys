@@ -1,3 +1,8 @@
+<h3>{{troop?.name}}</h3>
+<div>
+  Your action buttons here
+</div>
+<div>
 <table>
     <tr>
       <th>Name</th>
@@ -5,5 +10,8 @@
       <th>Age</th>
       <th>Status</th>
     </tr>
-    <tr *ngFor="let ></tr>
+    <tr *ngFor="let monkey of troop?.monkeys">
+      <td>{{monkey.name}}</td>
+    </tr>
   </table>
+</div>
