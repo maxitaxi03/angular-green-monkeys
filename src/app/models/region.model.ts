@@ -6,6 +6,7 @@ export class Region {
     monkeysCount: number = 0; 
     name: string;
 
+
     constructor(name: string) {
         this.name = name;
     }
@@ -42,5 +43,7 @@ export class Region {
         let avgWeight = this.grandTotalWeight() / this.getMonkeysCount();
         return avgWeight;
     }
-    
+    update(e: any) {
+        let selectedTroop = e.target.value;
+      }
 }

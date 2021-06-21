@@ -37,11 +37,9 @@ export class Monkey {
 
        if (mutChance <= 0.02) {
         this.isMutant = true;
-        this.numOfMutants++;
+        //this.numOfMutants++;
      }
-        else {
-            this.numOfNormals++;
-     }
+    
     }
     injure() {
         this.injuries++;

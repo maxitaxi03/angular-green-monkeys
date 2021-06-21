@@ -1,0 +1,6 @@
+<button (click)=createNewTroop()>Create New Troop</button>
+
+    <select id="troop-select" (change)="update($event)">
+      <option value="">--Please choose a troop--</option>
+      <option ngFor="let troop of troops" [value]="troop.name">{{troop.name}}</option>
+    <select>

@@ -5,8 +5,8 @@ export class Troop {
     name: string;
     monkeys: Monkey[] = [];
 
-    constructor() {
-        this.name = '';
+    constructor(name: string) {
+        this.name = name;
     }
     size() : number {
         let size = this.monkeys.length;
@@ -47,6 +47,9 @@ export class Troop {
     feedAll(): void {
         this.monkeys.forEach(monkey => monkey.eat(10));
     }
+    ageAll(): void {
+        this.monkeys.forEach(monkey => monkey.ageMonk());
+    }
     totalAge(): number {
         //this.monkeys.forEach(monkey => monkey.age += monkey.age);
         let totalage: number = 0;
@@ -63,12 +66,16 @@ export class Troop {
     }
     totalMutants(): number{
         let totalmutants: number = 0;
-        this.monkeys.forEach(monkey => totalmutants += monkey.numOfMutants);
+        this.monkeys.forEach(monkey => {
+           if (monkey.isMutant == true) {
+               totalmutants++;
+           } 
+        });
         return totalmutants;
     }
     totalNormals(): number {
         let totalnormals: number = 0;
-        this.monkeys.forEach(monkey => totalnormals += monkey.numOfNormals);
+        this.monkeys.forEach(monkey => this.totalMonkeys() - this.totalMutants());
         return totalnormals;
         
     }
