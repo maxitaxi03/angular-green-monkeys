@@ -4,7 +4,7 @@ export class Monkey {
     static minWeight: number;
     static maxWeight: number;
     static minAge: number = 1; // measured in days
-    static maxAge: number; // measured in days
+    static maxAge: number = 100; // measured in days
 
     name: string;
     imageUrl: string = "https://www.placemonkeys.com/500/350?random";
@@ -21,7 +21,7 @@ export class Monkey {
     constructor(age?: number) {
         this.gender = Utils.randomBoolean() ? 'male' : 'female';
         this.name = Utils.randomName(this.gender);
-        this.age = Utils.randomIntFromInterval(Monkey.minAge, Monkey.maxAge);
+        this.age = Utils.getRandomInt(Monkey.minAge, Monkey.maxAge);
         this.weight = Utils.randomIntFromInterval(Monkey.minWeight, Monkey.maxWeight);
     }
     vitalStats() {
@@ -31,7 +31,7 @@ export class Monkey {
         this.weight = this.weight * (amount / 100);
         
     }
-    ageMonk(): void {
+    ageMonk(): number {
        let mutChance = Utils.randomIntFromInterval(0.02, 1);
        this.age++;
 
@@ -39,6 +39,8 @@ export class Monkey {
         this.isMutant = true;
         //this.numOfMutants++;
      }
+     return this.age;
+     console.log(this.age);
     
     }
     injure() {

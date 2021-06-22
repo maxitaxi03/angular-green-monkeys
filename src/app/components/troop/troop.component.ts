@@ -25,6 +25,7 @@ export class TroopComponent implements OnInit {
   }
   age() {
     this.troop?.ageAll();
+    
   }
   feed() {
     this.troop?.feedAll();

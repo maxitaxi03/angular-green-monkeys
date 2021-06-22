@@ -11,6 +11,7 @@ export class Troop {
             } else {
                 this.name = Utils.randomIntFromInterval(1000, 10000) + '';
             }
+            console.log(this.monkeys);
     }
     size() : number {
         let size = this.monkeys.length;
@@ -41,10 +42,10 @@ export class Troop {
         }
     }
     populate(): void {
-        while (this.size() <= Troop.maxSize) {
-            let toAdd = Troop.maxSize - this.monkeys.length;
-            for (let i = 0; i < toAdd; i++) {
-                this.monkeys.push(new Monkey());
+       while (this.size() <= Troop.maxSize) {
+          let toAdd = Troop.maxSize - this.monkeys.length;
+            for (let i = 0; i < 5; i++) {
+                this.monkeys.unshift(new Monkey());
             }
         }
         console.log(this.monkeys.length);

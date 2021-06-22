@@ -1,7 +1,13 @@
 export class Utils {
     static randomIntFromInterval(min: number, max: number): number { // min and max included 
-        return Math.floor(Math.random() * (max - min + 1) + min)
+        return Math.floor(Math.random() * (max - min + 1) + min);
     }
+    static getRandomInt(min: number, max: number) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+      }
+      
     static randomBoolean(): boolean {
         return Math.random() >= 0.5;
     }
@@ -35,8 +41,8 @@ export class Utils {
               'aby',
               'inky',
               'lue',
-              'oo',
-              'oots',
+              'oolah',
+              'ootsama',
               'randy',
               'allie',
             ];
