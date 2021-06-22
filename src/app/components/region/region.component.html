@@ -8,7 +8,5 @@
       <option value="">--Please choose a troop--</option>
       <option *ngFor="let troop of region.troops" [value]="troop.name">{{troop.name}}</option>
     </select>
-    <pre>{{selectedTroop | json}}</pre>
-    <app-troop [troop]="selectedTroop"></app-troop>
-</div>
+    </div>
 </div>

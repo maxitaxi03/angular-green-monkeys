@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import  { Troop } from './models/troop.model';
-import { TroopComponent } from './components/troop/troop.component';
-
 
 @Component({
   selector: 'app-root',
@@ -11,10 +9,15 @@ import { TroopComponent } from './components/troop/troop.component';
 export class AppComponent {
   title = 'GreenMonkeys Angular';
   region: Troop[] = [];
+  activeTroop?: Troop;
 
   addNewTroop(name: string): void {
     let troop = new Troop(name);
     troop.populate();
     this.region.push(troop);
   }
+  onTroopSelected(troop: any) {
+    this.activeTroop = troop; 
+  }
+
 }

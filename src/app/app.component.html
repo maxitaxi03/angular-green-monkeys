@@ -1,3 +1,6 @@
 <div style="margin: 10px;">
-  <region></region>
+  <region (troopSelected)="onTroopSelected($event)"></region>
+</div>
+<div style="margin: 10px;" *ngIf="activeTroop">
+<app-troop [troop]="activeTroop"></app-troop>
 </div>

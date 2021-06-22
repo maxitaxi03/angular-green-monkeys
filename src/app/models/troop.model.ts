@@ -47,6 +47,7 @@ export class Troop {
                 this.monkeys.push(new Monkey());
             }
         }
+        console.log(this.monkeys.length);
     }
     feedAll(): void {
         this.monkeys.forEach(monkey => monkey.eat(10));

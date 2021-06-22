@@ -10,6 +10,10 @@ export class TroopComponent implements OnInit {
   // troops: Troop[] = [];
   // troop?: Troop;
   @Input('troop') troop?: Troop;
+  
+
+  
+
   constructor() { }
 
   ngOnInit(): void {
