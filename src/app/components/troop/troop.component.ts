@@ -34,7 +34,7 @@ export class TroopComponent implements OnInit {
   onMonkeySelect(event: any): void {
     const name = event.target.value; 
       this.selectedMonkey = this.troop?.monkeys.find(monkey => monkey.name === name);
-      console.log(this.troop?.monkeys.length)
+      console.log(`(CLICK WORKS)`)
     
     
   }
