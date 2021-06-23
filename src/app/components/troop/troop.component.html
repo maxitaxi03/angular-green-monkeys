@@ -13,12 +13,16 @@
       <th>Gender</th> 
       <th>Age</th>
       <th>Status</th>
+      <th>Weight</th>
+      <th>Normal or Mutant</th>
     </tr>
     <tr *ngFor="let monkey of troop?.monkeys">
-      <td>{{monkey.name}}</td>
-      <td>{{monkey.gender}}</td>
+      <td>{{ monkey.name }}</td>
+      <td>{{ monkey.gender }}</td>
       <td>{{ monkey.age }}</td>
       <td>{{  monkey.isAlive }}</td>
+      <td>{{ monkey.weight }}</td>
+      <td>{{ monkey.isMutant }}</td>
     </tr>
   </table>
 </div>

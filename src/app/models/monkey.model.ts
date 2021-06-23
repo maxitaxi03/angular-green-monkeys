@@ -1,8 +1,8 @@
 import { Utils } from './utils.model';
 
 export class Monkey {
-    static minWeight: number;
-    static maxWeight: number;
+    static minWeight: number = 1.50;
+    static maxWeight: number = 20;
     static minAge: number = 1; // measured in days
     static maxAge: number = 100; // measured in days
 
@@ -28,8 +28,7 @@ export class Monkey {
         return {isAlive: this.isAlive, isMutant: this.isMutant}
     }
     eat(amount: number) {
-        this.weight = this.weight * (amount / 100);
-        
+        this.weight += this.weight * (amount / 100);
     }
     ageMonk(): number {
        let mutChance = Utils.randomIntFromInterval(0.02, 1);

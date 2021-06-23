@@ -46,7 +46,7 @@ export class Utils {
               'randy',
               'allie',
             ];
-          const randNum = Utils.randomIntFromInterval(0, 4);
+          const randNum = Utils.randomIntFromInterval(0, male.length);
           return gender === 'male' ? male[randNum] : female[randNum];
       }
   }

@@ -42,13 +42,11 @@ export class Troop {
         }
     }
     populate(): void {
-       while (this.size() <= Troop.maxSize) {
-          let toAdd = Troop.maxSize - this.monkeys.length;
-            for (let i = 0; i < 5; i++) {
-                this.monkeys.unshift(new Monkey());
-            }
-        }
-        console.log(this.monkeys.length);
+       let toAdd = Troop.maxSize - this.monkeys.length
+       for (let i = 0; i < toAdd; i++) {
+           this.monkeys.push(new Monkey());
+       }
+        
     }
     feedAll(): void {
         this.monkeys.forEach(monkey => monkey.eat(10));
@@ -80,9 +78,8 @@ export class Troop {
         return totalmutants;
     }
     totalNormals(): number {
-        let totalnormals: number = 0;
-        this.monkeys.forEach(monkey => this.totalMonkeys() - this.totalMutants());
-        return totalnormals;
+        let totnormals = 0;
+        return this.totalMonkeys() - this.totalMutants()
         
     }
 }
