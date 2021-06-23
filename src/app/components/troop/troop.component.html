@@ -1,6 +1,5 @@
 <h3>{{troop?.name}}</h3>
 <div>
-  Your action buttons here
   <button (click)="populate()">Populate Troop</button>
   <button (click)="age()">Age Troop</button>
   <button (click)="feed()">Feed Troop</button>
@@ -17,7 +16,7 @@
       <th>Normal or Mutant</th>
     </tr>
     <tr *ngFor="let monkey of troop?.monkeys">
-      <td>{{ monkey.name }}</td>
+      <td (click)="onMonkeySelect($event)">{{ monkey.name }}</td>
       <td>{{ monkey.gender }}</td>
       <td>{{ monkey.age }}</td>
       <td>{{  monkey.isAlive }}</td>
@@ -25,4 +24,7 @@
       <td>{{ monkey.isMutant }}</td>
     </tr>
   </table>
+</div>
+<div>
+  <monkey></monkey>
 </div>

@@ -48,7 +48,9 @@ export class Monkey {
             this.isAlive = false;
         }
         return this.isAlive;
-    }/*
+    }
+    /*
+    
     totAge(): number {
         let totAge: number = 0;
         totAge += this.age;

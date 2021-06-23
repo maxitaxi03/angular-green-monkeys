@@ -6,6 +6,7 @@ import {AppComponent} from './app.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { TroopComponent } from './components/troop/troop.component';
 import { RegionComponent } from './components/region/region.component';
+import { MonkeyComponent } from './components/monkey/monkey.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { RegionComponent } from './components/region/region.component';
     TroopComponent,
     StatisticsComponent,
     RegionComponent,
+    MonkeyComponent,
   ],
   imports: [
     BrowserModule,

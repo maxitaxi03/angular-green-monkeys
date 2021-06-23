@@ -82,4 +82,5 @@ export class Troop {
         return this.totalMonkeys() - this.totalMutants()
         
     }
+    
 }
