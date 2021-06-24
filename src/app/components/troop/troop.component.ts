@@ -12,6 +12,7 @@ export class TroopComponent implements OnInit {
   // troop?: Troop;
   @Input('troop') troop?: Troop;
   selectedMonkey?: Monkey;
+  logger = '';
   constructor() { }
 
   ngOnInit(): void {
@@ -29,14 +30,12 @@ export class TroopComponent implements OnInit {
     this.troop?.feedAll();
   }
   engage() {
-    this.troop?.engage();
+    if (!this.troop) return;
+    this.logger = this.troop.engage();
   }
-  onMonkeySelect(event: any): void {
-    const name = event.target.value; 
-      this.selectedMonkey = this.troop?.monkeys.find(monkey => monkey.name === name);
-      console.log(`(CLICK WORKS)`)
-    
-    
+  onMonkeySelect(id: number): void {
+      this.selectedMonkey = this.troop?.monkeys.find(monkey => monkey.id === id);
+      // Also emit the selected monkey
   }
    /*
   populate() {

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Monkey } from './models/monkey.model';
+import { Region } from './models/region.model';
 import  { Troop } from './models/troop.model';
 
 @Component({
@@ -8,13 +10,18 @@ import  { Troop } from './models/troop.model';
 })
 export class AppComponent {
   title = 'GreenMonkeys Angular';
-  region: Troop[] = [];
+  region: Region;
   activeTroop?: Troop;
+  activeMonkey?: Monkey;
+
+  constructor() {
+    this.region = new Region('Barbados');
+  }
 
   addNewTroop(name: string): void {
     let troop = new Troop(name);
     troop.populate();
-    this.region.push(troop);
+    this.region.troops.push(troop);
   }
   onTroopSelected(troop: any) {
     this.activeTroop = troop; 

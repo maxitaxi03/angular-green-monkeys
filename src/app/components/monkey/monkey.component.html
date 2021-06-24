@@ -1,4 +1,9 @@
-<div>
-<img src="https://www.placemonkeys.com/500/350?random" alt="monkey">
-<h4>{{monkey?.age}}</h4>
-</div>
+<div class="card" *ngIf="monkey">
+    <!-- img src="" alt="Avatar" style="width:100%" -->
+    <div class="container">
+      <h4 [ngClass]="{'is-dead': !monkey.isAlive}"><b>{{monkey.name}}</b></h4>
+      <p>Age: {{monkey.age}}</p>
+      <p>Status: {{monkey.isAlive ? 'Alive' : 'Dead'}}</p>
+      <p>Mutant: {{monkey.isMutant ? 'Yes' : 'No'}}</p>
+    </div>
+  </div> 

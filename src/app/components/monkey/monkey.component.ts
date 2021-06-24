@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Monkey } from 'src/app/models/monkey.model';
 
 @Component({
@@ -6,14 +6,7 @@ import { Monkey } from 'src/app/models/monkey.model';
   templateUrl: './monkey.component.html',
   styleUrls: ['./monkey.component.css']
 })
-export class MonkeyComponent implements OnInit {
+export class MonkeyComponent {
   @Input('monkey') monkey?: Monkey;
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
- 
-
-
 }

@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { Troop } from 'src/app/models/troop.model';
 import { Region } from '../../models/region.model';
+import { Monkey } from '../../models/monkey.model';
 
 @Component({
   selector: 'region',
@@ -10,9 +11,9 @@ import { Region } from '../../models/region.model';
 export class RegionComponent {
   region: Region;
   selectedTroop?: Troop;
+  
   @Output() troopSelected = new EventEmitter<Troop>();
-
-
+ 
   constructor() { 
     this.region = new Region();
   }

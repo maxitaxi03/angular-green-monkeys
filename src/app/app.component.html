@@ -2,5 +2,9 @@
   <region (troopSelected)="onTroopSelected($event)"></region>
 </div>
 <div style="margin: 10px;" *ngIf="activeTroop">
-<app-troop [troop]="activeTroop"></app-troop>
+<app-troop [troop]="activeTroop" ></app-troop>
 </div>
+<div style="margin: 10px;" *ngIf="activeMonkey">
+  <h5>Region: {{region.name}}</h5>
+  <monkey [monkey]="activeMonkey"></monkey>
+  </div>

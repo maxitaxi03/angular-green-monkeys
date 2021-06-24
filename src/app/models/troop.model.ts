@@ -1,7 +1,7 @@
 import { Monkey } from './monkey.model';
 import { Utils } from './utils.model';
 export class Troop {
-    static maxSize = 20;
+    static maxSize = 3;
     name: string;
     monkeys: Monkey[] = [];
 
@@ -17,29 +17,30 @@ export class Troop {
         let size = this.monkeys.length;
         return size;
     }
-    engage(): void {
-        let num1 = Utils.randomIntFromInterval(0,this.size());
-        let num2 = Utils.randomIntFromInterval(0,this.size());
-
-        if (num1 === num2) {
-            let num2 = Utils.randomIntFromInterval(0,this.size());
+    engage(): string {
+        let result = '';
+        const monkeyPair = this.chooseLiveMonkeyPairRandomly();
+        let randNum = Utils.randomIntFromInterval(1, 100);
+        let fightRate = (monkeyPair.m1.weight / monkeyPair.m2.weight) * 50;
+        if (monkeyPair.m1.gender === monkeyPair.m2.gender) {
+                (randNum > fightRate) ? monkeyPair.m1.injure() : monkeyPair.m2.injure();
+                result = `${monkeyPair.m1.name} and ${monkeyPair.m2.name} fought.`;
+        
+        } else {
+            const baby = new Monkey(1);
+            this.monkeys.push(baby);
+            result = `${monkeyPair.m1.name} and ${monkeyPair.m2.name} have made baby ${baby.name}.`;
         }
-        let randNUm = Utils.randomIntFromInterval(1, 100);
-        let fightRate = (this.monkeys[num1].weight / this.monkeys[num2].weight) * 50;
-        if (this.monkeys[num1].gender == this.monkeys[num2].gender) {
-            if (this.monkeys[num1].isAlive && this.monkeys[num2].isAlive){
-                (randNUm > fightRate) ? this.monkeys[num1].injure() : this.monkeys[num2].injure();
-            }
-            else {    
-                if(!this.monkeys[num1].isAlive)
-                    this.monkeys.splice(num1);
-                if (!this.monkeys[num2].isAlive)
-                    this.monkeys.splice(num1);
-            }
+        return result;
+    }
+    private chooseLiveMonkeyPairRandomly(): {m1: Monkey, m2: Monkey} {
+        let num1 = Utils.randomIntFromInterval(0, this.size()-1);
+        let num2 = Utils.randomIntFromInterval(0, this.size()-1);
+        while(num1 === num2) {
+            num2 = Utils.randomIntFromInterval(0, this.size()-1);
         }
-        else {
-            this.monkeys.push(new Monkey());
-        }
+        // Todo return only live monkeys
+        return {m1: this.monkeys[num1], m2: this.monkeys[num2]};
     }
     populate(): void {
        let toAdd = Troop.maxSize - this.monkeys.length
@@ -82,5 +83,6 @@ export class Troop {
         return this.totalMonkeys() - this.totalMutants()
         
     }
+    
     
 }

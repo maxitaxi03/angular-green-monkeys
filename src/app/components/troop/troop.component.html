@@ -1,11 +1,12 @@
-<h3>{{troop?.name}}</h3>
+<h3>{{troop?.name}} Troop</h3>
 <div>
   <button (click)="populate()">Populate Troop</button>
   <button (click)="age()">Age Troop</button>
   <button (click)="feed()">Feed Troop</button>
   <button (click)="engage()">Engage Troop</button>
 </div>
-<div>
+<pre>{{logger}}</pre>
+<div style="margin: 15px; padding: 10px;">
 <table>
     <tr>
       <th>Name</th>
@@ -16,15 +17,15 @@
       <th>Normal or Mutant</th>
     </tr>
     <tr *ngFor="let monkey of troop?.monkeys">
-      <td (click)="onMonkeySelect($event)">{{ monkey.name }}</td>
-      <td>{{ monkey.gender }}</td>
+      <td (click)="onMonkeySelect(monkey.id)"><a href="#">{{ monkey.name | titlecase }}</a></td>
+      <td>{{ monkey.gender | titlecase }}</td>
       <td>{{ monkey.age }}</td>
-      <td>{{  monkey.isAlive }}</td>
+      <td>{{ monkey.isAlive ? 'Alive' : 'Dead' }}</td>
       <td>{{ monkey.weight }}</td>
-      <td>{{ monkey.isMutant }}</td>
+      <td>{{ monkey.isMutant ? 'Yes' : 'No' }}</td>
     </tr>
   </table>
 </div>
-<div>
-  <monkey></monkey>
+<div style="margin-top: 10px;">
+  <monkey [monkey]="selectedMonkey"></monkey>
 </div>
