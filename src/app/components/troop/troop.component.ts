@@ -12,6 +12,7 @@ export class TroopComponent implements OnInit {
   // troop?: Troop;
   @Input('troop') troop?: Troop;
   @Output() monkeySelected = new EventEmitter<Monkey>();
+  toggleCard = false;
   
   selectedMonkey?: Monkey;
   logger = '';

@@ -17,7 +17,7 @@
       <th>Normal or Mutant</th>
     </tr>
     <tr *ngFor="let monkey of troop?.monkeys">
-      <td (click)="onMonkeySelect(monkey.id)"><a href="#">{{ monkey.name | titlecase }}</a></td>
+      <td (click)="onMonkeySelect(monkey.id); toggleCard = !toggleCard"><a href="#">{{ monkey.name | titlecase }}</a></td>
       <td>{{ monkey.gender | titlecase }}</td>
       <td>{{ monkey.age }}</td>
       <td>{{ monkey.isAlive ? 'Alive' : 'Dead' }}</td>
