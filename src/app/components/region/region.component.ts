@@ -19,7 +19,7 @@ export class RegionComponent {
   }
   
   
-  onTroopSelected(event: any): void {
+    onTroopSelected(event: any): void {
     const name = event.target.value;
     if (name === "") {this.selectedTroop = undefined; }
     else {
@@ -28,7 +28,7 @@ export class RegionComponent {
         this.troopSelected.emit(troop); 
         this.selectedTroop = troop; 
       }
-  }
+    }
 }
   createNewTroop(name?: string) {
     if (name) {

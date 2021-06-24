@@ -26,5 +26,8 @@ export class AppComponent {
   onTroopSelected(troop: any) {
     this.activeTroop = troop; 
   }
+  onMonkeySelected(monkey: any) {
+    this.activeMonkey = monkey;
+  }
 
 }
