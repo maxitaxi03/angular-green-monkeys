@@ -40,7 +40,11 @@ export class Troop {
             num2 = Utils.randomIntFromInterval(0, this.size()-1);
         }
         // Todo return only live monkeys
-        return {m1: this.monkeys[num1], m2: this.monkeys[num2]};
+        if  (this.monkeys[num1].isAlive && this.monkeys[num2].isAlive)
+            return {m1: this.monkeys[num1], m2: this.monkeys[num2]};
+        else 
+            return 
+            
     }
     populate(): void {
        let toAdd = Troop.maxSize - this.monkeys.length

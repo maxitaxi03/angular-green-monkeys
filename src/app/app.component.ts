@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Monkey } from './models/monkey.model';
 import { Region } from './models/region.model';
 import  { Troop } from './models/troop.model';
@@ -13,9 +13,13 @@ export class AppComponent {
   region: Region;
   activeTroop?: Troop;
   activeMonkey?: Monkey;
+  activeRegion?: Region;
+  selectedRegion?: Region;
+  @Output() regionSelected = new EventEmitter<Region>();
 
   constructor() {
     this.region = new Region('Barbados');
+    this.activeRegion = this.region;
   }
 
   addNewTroop(name: string): void {
@@ -29,5 +33,6 @@ export class AppComponent {
   onMonkeySelected(monkey: any) {
     this.activeMonkey = monkey;
   }
-
+  
+  
 }
