@@ -1,6 +1,6 @@
-<button (click)="revealStats = !revealStats">Show Stats</button>
-<div *ngIf="revealStats">
-<h4>{{region?.name}} Statistics</h4>
-<p>Total Monkeys in {{region?.name}}: {{region?.getMonkeysCount()}}</p>
-<p>Total Mutants in {{region?.name}}: {{region?.grandTotalMutants()}}</p>
+<button (click)="refreshStats()">Refresh Stats</button>
+<div *ngIf="region">
+<h4>{{region.name}} Statistics</h4>
+<p>Total Monkeys in {{region.name}}: {{stats.monkeyCount}}</p>
+<p>Total Mutants in {{region.name}}: {{stats.mutantMonkeysCount}}</p>
 </div>

@@ -1,9 +1,6 @@
 <div style="margin: 10px; background-color: orange;">
-  <region (troopSelected)="onTroopSelected($event)"></region>
+  <region (troopSelected)="onTroopSelected($event)" [region]="region"></region>
 </div>
-<!--<div style="margin: 10px; background-color: green;" *ngIf="activeTroop">
-  <app-troop [troop]="activeTroop" ></app-troop>
-</div>-->
 <div style="margin: 10px; background-color: grey;">
   <app-troop [troop]="activeTroop" (monkeySelected)="onMonkeySelected($event)"></app-troop>
   <h5>Region: {{region.name}}</h5>
@@ -11,5 +8,8 @@
 </div>
 
 <div style="margin: 10px; padding: 5px;" >
-  <statistics [region]="activeRegion"></statistics>
+  <statistics [region]="region"></statistics>
+</div>
+<div style="margin: 10x; padding: 10px; background-color: green;">
+{{region.getMonkeyCount()}} is the total number of monkeys in the region
 </div>

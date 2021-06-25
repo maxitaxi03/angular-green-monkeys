@@ -12,6 +12,10 @@ export class Troop {
                 this.name = Utils.randomIntFromInterval(1000, 10000) + '';
             }
             console.log(this.monkeys);
+            console.log(`Total age of troop ${this.totalAge()}`);
+            console.log(`Total weight of troop ${this.totalWeight()}`);
+            console.log(`Total number of monkeys in troop ${this.totalMonkeys()}`);
+            console.log(`Size of the monkey array: ${this.size()}`)
     }
     size() : number {
         let size = this.monkeys.length;
@@ -40,10 +44,9 @@ export class Troop {
             num2 = Utils.randomIntFromInterval(0, this.size()-1);
         }
         // Todo return only live monkeys
-        if  (this.monkeys[num1].isAlive && this.monkeys[num2].isAlive)
+        //if  (this.monkeys[num1].isAlive && this.monkeys[num2].isAlive)
             return {m1: this.monkeys[num1], m2: this.monkeys[num2]};
-        else 
-            return 
+         
             
     }
     populate(): void {

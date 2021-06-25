@@ -18,14 +18,11 @@ export class AppComponent {
   @Output() regionSelected = new EventEmitter<Region>();
 
   constructor() {
-    this.region = new Region('Barbados');
-    this.activeRegion = this.region;
+    this.region = new Region('Barbados');    
   }
 
   addNewTroop(name: string): void {
-    let troop = new Troop(name);
-    troop.populate();
-    this.region.troops.push(troop);
+    this.region.createNewTroop(name);
   }
   onTroopSelected(troop: any) {
     this.activeTroop = troop; 

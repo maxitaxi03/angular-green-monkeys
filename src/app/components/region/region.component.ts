@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
 import { Troop } from 'src/app/models/troop.model';
 import { Region } from '../../models/region.model';
 import { Monkey } from '../../models/monkey.model';
@@ -8,15 +8,20 @@ import { Monkey } from '../../models/monkey.model';
   templateUrl: './region.component.html',
   styleUrls: ['./region.component.css']
 })
-export class RegionComponent {
-  region: Region;
+export class RegionComponent implements OnInit {
+  @Input('region') region!: Region;
   selectedTroop?: Troop;
   
   @Output() troopSelected = new EventEmitter<Troop>();
  
-  constructor() { 
-    this.region = new Region();
+  constructor() {
+    console.log('Con ', this.region);
   }
+  ngOnInit() {
+    console.log('OnInit ', this.region);
+    this.region.createNewTroop('Boyys');
+  }
+
   
     onTroopSelected(event: any): void {
     const name = event.target.value;
