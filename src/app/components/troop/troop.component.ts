@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { AppService } from 'src/app/app.service';
 import { Monkey } from 'src/app/models/monkey.model';
 import { Troop } from 'src/app/models/troop.model';
 
@@ -10,16 +11,18 @@ import { Troop } from 'src/app/models/troop.model';
 export class TroopComponent implements OnInit {
   // troops: Troop[] = [];
   // troop?: Troop;
-  @Input('troop') troop?: Troop;
+  troop?: Troop;
   @Output() monkeySelected = new EventEmitter<Monkey>();
   toggleCard = false;
   
   selectedMonkey?: Monkey;
   logger = '';
-  constructor() { }
+  constructor(private appService: AppService) { 
+    this.troop = this.appService.activeTroop;
+  }
 
   ngOnInit(): void {
-    
+    console.log('Troop', this.troop);
   }
  
   populate() {

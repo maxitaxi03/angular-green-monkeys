@@ -17,12 +17,14 @@ export class Monkey {
     gender: string;
     numOfMutants: number = 0;
     numOfNormals: number = 0;
+    troopId: string = '';
 
 
-    constructor(age?: number) {
+    constructor(age?: number, troopId?: string) {
         this.gender = Utils.randomBoolean() ? 'male' : 'female';
         this.name = Utils.randomName(this.gender);
         this.age = age ? age : Utils.getRandomInt(Monkey.minAge, Monkey.maxAge);
+        if (troopId) this.troopId = troopId;
         this.weight = Utils.randomIntFromInterval(Monkey.minWeight, Monkey.maxWeight);
         this.id = Utils.randomIntFromInterval(1, 10000);
     }

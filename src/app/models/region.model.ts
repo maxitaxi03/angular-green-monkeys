@@ -14,7 +14,9 @@ export class Region {
         } else {
             this.name = Utils.randomIntFromInterval(1000, 10000) + '';
         }
-
+    }
+    findTroop(name: string): Troop | undefined {
+        return this.troops.find(troop => troop.name === name);
     }
     getMonkeyCount(): number {
       return this.troops.reduce((count, troop) => count + troop.totalMonkeys(), 0);

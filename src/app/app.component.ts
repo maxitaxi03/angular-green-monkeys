@@ -1,4 +1,5 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { AppService } from './app.service';
 import { Monkey } from './models/monkey.model';
 import { Region } from './models/region.model';
 import  { Troop } from './models/troop.model';
@@ -8,7 +9,7 @@ import  { Troop } from './models/troop.model';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'GreenMonkeys Angular';
   region: Region;
   activeTroop?: Troop;
@@ -17,15 +18,19 @@ export class AppComponent {
   selectedRegion?: Region;
   @Output() regionSelected = new EventEmitter<Region>();
 
-  constructor() {
-    this.region = new Region('Barbados');    
+  constructor(private appService: AppService) {
+    this.appService.createRegion('Barbados');
+    this.region = this.appService.region; 
   }
+  ngOnInit() {}
 
   addNewTroop(name: string): void {
-    this.region.createNewTroop(name);
+    this.appService.addNewTroopToRegion(name);
   }
   onTroopSelected(troop: any) {
-    this.activeTroop = troop; 
+    this.appService.activeTroop = troop;
+    this.activeTroop = this.appService.activeTroop;
+    console.log('Active Troop', this.appService.activeTroop); 
   }
   onMonkeySelected(monkey: any) {
     this.activeMonkey = monkey;
