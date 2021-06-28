@@ -44,7 +44,13 @@ export class Troop {
             num2 = Utils.randomIntFromInterval(0, this.size()-1);
         }
         // Todo return only live monkeys
-        //if  (this.monkeys[num1].isAlive && this.monkeys[num2].isAlive)
+        // while (this.monkeys[num1].isAlive && this.monkeys[num2].isAlive)
+        while (!this.monkeys[num1].isAlive) {
+            num1 = Utils.randomIntFromInterval(0, this.size()-1);
+        }
+        while (!this.monkeys[num2].isAlive) {
+            num2 = Utils.randomIntFromInterval(0, this.size()-1);
+        }
             return {m1: this.monkeys[num1], m2: this.monkeys[num2]};
          
             

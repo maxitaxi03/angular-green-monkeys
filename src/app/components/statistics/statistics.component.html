@@ -1,5 +1,5 @@
-<button (click)="refreshStats()">Refresh Stats</button>
-<div *ngIf="region">
+<button (click)="refreshStats()" (click)="toggle = !toggle">Refresh Stats</button>
+<div *ngIf="region && toggle">
 <h4>{{region.name}} Statistics</h4>
 <p>Total Monkeys in {{region.name}}: {{stats.monkeyCount}}</p>
 <p>Total Mutants in {{region.name}}: {{stats.mutantMonkeysCount}}</p>

@@ -1,7 +1,7 @@
 <div style="margin: 10px; background-color: orange;">
   <region (troopSelected)="onTroopSelected($event)" [region]="region"></region>
 </div>
-<div style="margin: 10px; background-color: grey;">
+<div style="margin: 10px;">
   <app-troop [troop]="activeTroop" (monkeySelected)="onMonkeySelected($event)"></app-troop>
   <h5>Region: {{region.name}}</h5>
   <monkey [monkey]="activeMonkey"></monkey>

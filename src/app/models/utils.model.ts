@@ -47,6 +47,11 @@ export class Utils {
               'allie',
             ];
           const randNum = Utils.randomIntFromInterval(0, male.length - 1);
+          const randNum2 = Utils.randomIntFromInterval(0, male.length - 1);
+
+          if (randNum == randNum2){
+            const randNum2 = Utils.randomIntFromInterval(0, male.length - 1);
+          }
           return gender === 'male' ? male[randNum] : female[randNum];
       }
   }

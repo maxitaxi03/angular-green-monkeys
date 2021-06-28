@@ -1,20 +1,21 @@
-<h3>{{troop?.name}} Troop</h3>
+<div class="container"></div>
+<h3 style="text-align: center;">{{troop?.name}} Troop</h3>
 <div>
-  <button (click)="populate()">Populate Troop</button>
-  <button (click)="age()">Age Troop</button>
-  <button (click)="feed()">Feed Troop</button>
-  <button (click)="engage()">Engage Troop</button>
+  <button type="button" class="btn btn-primary" style="margin: 10px;" (click)="populate()">Populate Troop</button>
+  <button type="button" class="btn btn-primary" style="margin: 10px;" (click)="age()">Age Troop</button>
+  <button type="button" class="btn btn-primary" style="margin: 10px;" (click)="feed()">Feed Troop</button>
+  <button type="button" class="btn btn-primary" style="margin: 10px;" (click)="engage()">Engage Troop</button>
 </div>
 <pre>{{logger}}</pre>
 <div style="margin: 15px; padding: 10px;">
-<table>
+<table class="table">
     <tr>
-      <th>Name</th>
-      <th>Gender</th> 
-      <th>Age</th>
-      <th>Status</th>
-      <th>Weight</th>
-      <th>Normal or Mutant</th>
+      <th scope="col">Name</th>
+      <th scope="col">Gender</th> 
+      <th scope="col">Age</th>
+      <th scope="col">Status</th>
+      <th scope="col">Weight</th>
+      <th scope="col">Is Mutant?</th>
     </tr>
     <tr *ngFor="let monkey of troop?.monkeys">
       <td (click)="onMonkeySelect(monkey.id); toggleCard = !toggleCard"><a href="#">{{ monkey.name | titlecase }}</a></td>
