@@ -1,10 +1,9 @@
 <div style="margin: 10px; background-color: orange;">
-  <region (troopSelected)="onTroopSelected($event)" [region]="region"></region>
+  <region (troopSelected)="onTroopSelected($event)"></region>
 </div>
-<div style="margin: 10px;">
-  <app-troop [troop]="activeTroop" (monkeySelected)="onMonkeySelected($event)"></app-troop>
-  <h5>Region: {{region.name}}</h5>
-  <monkey [monkey]="activeMonkey"></monkey>
+<div style="margin: 10px; background-color: grey;" *ngIf="activeTroop">
+  <app-troop (monkeySelected)="onMonkeySelected($event)"></app-troop>
+  <h5>Region: {{region?.name}}</h5>
 </div>
 
 <div style="margin: 10px; padding: 5px;" >

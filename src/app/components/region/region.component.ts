@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter, Input, OnInit } from '@angular/core';
 import { Troop } from 'src/app/models/troop.model';
 import { Region } from '../../models/region.model';
-import { Monkey } from '../../models/monkey.model';
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'region',
@@ -9,19 +9,18 @@ import { Monkey } from '../../models/monkey.model';
   styleUrls: ['./region.component.css']
 })
 export class RegionComponent implements OnInit {
-  @Input('region') region!: Region;
+  region!: Region;
   selectedTroop?: Troop;
   
   @Output() troopSelected = new EventEmitter<Troop>();
  
-  constructor() {
-    console.log('Con ', this.region);
+  constructor(private appService: AppService) {
+    
   }
   ngOnInit() {
+    this.region = this.appService.region;
     console.log('OnInit ', this.region);
-    this.region.createNewTroop('Boyys');
   }
-
   
     onTroopSelected(event: any): void {
     const name = event.target.value;

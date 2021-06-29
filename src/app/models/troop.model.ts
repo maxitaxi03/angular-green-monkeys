@@ -58,7 +58,7 @@ export class Troop {
     populate(): void {
        let toAdd = Troop.maxSize - this.monkeys.length
        for (let i = 0; i < toAdd; i++) {
-           this.monkeys.push(new Monkey());
+           this.monkeys.push(new Monkey(undefined, this.name));
        }
         
     }
