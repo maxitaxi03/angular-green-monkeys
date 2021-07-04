@@ -21,6 +21,13 @@ export class AppService {
   set activeTroop(troop: Observable<Troop>) {
     this._activeTroop$ = troop;
   }
+  searchTroops(term: string): Observable<Troop[]> {
+    if (!term.trim()) {
+      // if not search term, return empty hero array.
+      return of([]);
+    }
+    return of(this._region.troops.filter(troop => troop.name.startsWith(term)));
+  }
   createRegion(name: string): void {
     this._region = new Region(name);  
   }
