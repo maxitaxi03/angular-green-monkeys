@@ -20,9 +20,13 @@ export class AppComponent implements OnInit {
 
   constructor(private appService: AppService) {
     this.appService.createRegion('Barbados');
-    this.region = this.appService.region; 
+    this.region = this.appService.region;
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.appService.user$.subscribe(console.log);
+
+    this.appService.orders$.subscribe(console.log);
+  }
 
   addNewTroop(name: string): void {
     this.appService.addNewTroopToRegion(name);
@@ -30,7 +34,7 @@ export class AppComponent implements OnInit {
   onTroopSelected(troop: any) {
     this.appService.activeTroop = troop;
     this.activeTroop = this.appService.activeTroop;
-    console.log('Active Troop', this.appService.activeTroop); 
+    console.log('Active Troop', this.appService.activeTroop);
   }
   onMonkeySelected(monkey: any) {
     this.activeMonkey = monkey;
