@@ -1,5 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter,
-  AfterViewInit, OnDestroy, DoCheck } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, OnDestroy, DoCheck } from '@angular/core';
 import { AppService } from 'src/app/app.service';
 import { Monkey } from 'src/app/models/monkey.model';
 import { Troop } from 'src/app/models/troop.model';

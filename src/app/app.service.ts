@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Region } from './models/region.model';
 import { Troop } from './models/troop.model';
+import { Monkey } from './models/monkey.model';
 import { Observable, of } from 'rxjs';
-import { switchMap, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +24,17 @@ export class AppService {
   }
   searchTroops(term: string): Observable<Troop[]> {
     if (!term.trim()) {
-      // if not search term, return empty hero array.
+      // if not search term, return empty troop array.
       return of([]);
     }
     return of(this._region.troops.filter(troop => troop.name.startsWith(term)));
+  }
+  searchMonkeys(term: string): Observable<Monkey[]> {
+    if (!term.trim()) {
+      // if not search term, return empty monkey array.
+      return of([]);
+    }
+    return of([]);
   }
   createRegion(name: string): void {
     this._region = new Region(name);  
