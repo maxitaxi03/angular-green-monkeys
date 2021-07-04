@@ -1,7 +1,7 @@
 <div style="margin: 10px; background-color: orange;">
   <region (troopSelected)="onTroopSelected($event)"></region>
 </div>
-<div style="margin: 10px; background-color: grey;" *ngIf="activeTroop">
+<div style="margin: 10px; background-color: grey;" *ngIf="activeTroop$ | async">
   <app-troop (monkeySelected)="onMonkeySelected($event)"></app-troop>
   <h5>Region: {{region?.name}}</h5>
 </div>

@@ -1,51 +1,66 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter,
+  AfterViewInit, OnDestroy, DoCheck } from '@angular/core';
 import { AppService } from 'src/app/app.service';
 import { Monkey } from 'src/app/models/monkey.model';
 import { Troop } from 'src/app/models/troop.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-troop',
   templateUrl: './troop.component.html',
   styleUrls: ['./troop.component.css']
 })
-export class TroopComponent implements OnInit {
-  // troops: Troop[] = [];
-  // troop?: Troop;
-  troop?: Troop;
+export class TroopComponent implements OnInit,
+  OnDestroy, DoCheck {
+  troop$?: Observable<Troop>;
   @Output() monkeySelected = new EventEmitter<Monkey>();
   toggleCard = false;
   
   selectedMonkey?: Monkey;
   logger = '';
-  constructor(private appService: AppService) { 
-    this.troop = this.appService.activeTroop;
-  }
-
+  constructor(private appService: AppService) {}
   ngOnInit(): void {
-    console.log('Troop', this.troop);
+    this.troop$ = this.appService.activeTroop;
+    this.troop$?.subscribe(
+      (troop: Troop) => console.log('TroopComponent Troop', troop));
   }
- 
-  populate() {
-    this.troop?.populate();
+  // https://angular.io/guide/lifecycle-hooks#docheck
+  ngDoCheck(): void {
+    this.troop$ = this.appService.activeTroop;
+    this.troop$?.subscribe(
+      (troop: Troop) => console.log('TroopComponent Troop', troop));
   }
-  age() {
-    this.troop?.ageAll();
-    
+  populate(): void {
+    this.troop$?.subscribe(
+      (troop: Troop) => troop.populate());
   }
-  feed() {
-    this.troop?.feedAll();
+  age(): void {
+    this.troop$?.subscribe(
+      (troop: Troop) => troop.ageAll());
   }
-  engage() {
-    if (!this.troop) return;
-    this.logger = this.troop.engage();
+  feed(): void {
+    this.troop$?.subscribe(
+      (troop: Troop) => troop.feedAll());
+  }
+  engage(): void {
+    if (!this.troop$) return;
+    this.troop$?.subscribe(
+      (troop: Troop) => {
+        this.logger = troop.engage();
+      });
   }
   onMonkeySelect(id: number): void {
-      let monkey = this.troop?.monkeys.find(monkey => monkey.id === id);
-      // Also emit the selected monkey
-      if (monkey) {
-        this.monkeySelected.emit(monkey);
-        this.selectedMonkey = monkey;
-      }
+    this.troop$?.subscribe(
+      (troop: Troop) => {
+        let monkey = troop.monkeys.find(monkey => monkey.id === id);
+        if (monkey) {
+          this.monkeySelected.emit(monkey);
+          this.selectedMonkey = monkey;
+        }
+      }); 
+  }
+  ngOnDestroy(): void {
+  
   }
    
 }
