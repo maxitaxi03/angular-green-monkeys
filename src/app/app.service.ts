@@ -12,6 +12,7 @@ export class AppService {
   private _region!: Region;
   private _troop!: Troop;
   private _activeTroop$!: Observable<Troop>;
+  private _activeMonkey$!: Observable<Monkey>;
 
   constructor() {}
   get region(): Region {
@@ -23,6 +24,13 @@ export class AppService {
   set activeTroop(troop: Observable<Troop>) {
     this._activeTroop$ = troop;
   }
+  get activeMonkey(): Observable<Monkey> {
+    return this._activeMonkey$;
+  }
+  set activeMonkey(monkey: Observable<Monkey>) {
+    this._activeMonkey$ = monkey;
+  }
+  
   searchTroops(term: string): Observable<Troop[]> {
     if (!term.trim()) {
       // if not search term, return empty troop array.

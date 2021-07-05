@@ -1,1 +1,9 @@
-<p>monkey-search works!</p>
+<div id="search-component">
+    <label for="search-box">Monkey Search</label>
+    <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+    <ul class="search-result">
+        <li *ngFor="let monkey of monkeys$ | async">
+          {{monkey.name}}
+        </li>
+      </ul>
+</div>

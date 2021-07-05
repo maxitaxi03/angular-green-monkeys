@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 import {
   debounceTime, distinctUntilChanged, switchMap
 } from 'rxjs/operators';
@@ -37,6 +37,7 @@ export class TroopSearchComponent implements OnInit {
   
   onTroopSelected(troop: Troop): void {
     console.log(troop.name);
+    this.appService.activeTroop = of<Troop>(troop);
     // Todo set as activeTroop on AppService
   }
 

@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   title = 'GreenMonkeys Angular';
   region: Region;
   activeTroop$?: Observable<Troop>;
-  activeMonkey?: Monkey;
+  activeMonkey$?: Observable<Monkey>;
   activeRegion?: Region;
   selectedRegion?: Region;
   @Output() regionSelected = new EventEmitter<Region>();
@@ -36,6 +36,8 @@ export class AppComponent implements OnInit {
     console.log(`Troop ${troop.name} is now active.`);
   }
   onMonkeySelected(monkey: any) {
-    this.activeMonkey = monkey;
+    this.appService.activeMonkey = of<Monkey>(monkey);
+    this.activeMonkey$ = this.appService.activeMonkey;
+    console.log(`Monkey ${monkey.name} is now active`);
   }
 }
