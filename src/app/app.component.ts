@@ -3,6 +3,7 @@ import { AppService } from './app.service';
 import { Monkey } from './models/monkey.model';
 import { Region } from './models/region.model';
 import { Troop } from './models/troop.model';
+import  { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ import { Troop } from './models/troop.model';
 export class AppComponent implements OnInit {
   title = 'GreenMonkeys Angular';
   region: Region;
-  activeTroop?: Troop;
+  activeTroop$?: Observable<Troop>;
   activeMonkey?: Monkey;
   activeRegion?: Region;
   selectedRegion?: Region;
@@ -24,17 +25,15 @@ export class AppComponent implements OnInit {
   }
   ngOnInit() {
     this.appService.user$.subscribe(console.log);
-
     this.appService.orders$.subscribe(console.log);
   }
-
   addNewTroop(name: string): void {
     this.appService.addNewTroopToRegion(name);
   }
   onTroopSelected(troop: any) {
-    this.appService.activeTroop = troop;
-    this.activeTroop = this.appService.activeTroop;
-    console.log('Active Troop', this.appService.activeTroop);
+    this.appService.activeTroop = of<Troop>(troop);
+    this.activeTroop$ = this.appService.activeTroop; // Contrived example
+    console.log(`Troop ${troop.name} is now active.`);
   }
   onMonkeySelected(monkey: any) {
     this.activeMonkey = monkey;

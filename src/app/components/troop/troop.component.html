@@ -1,5 +1,5 @@
 <div class="container"></div>
-<h3 style="text-align: center;">{{troop?.name}} Troop</h3>
+<h3 style="text-align: center;">{{(troop$ | async)?.name}} Troop</h3>
 <div>
   <button type="button" class="btn btn-primary" style="margin: 10px;" (click)="populate()">Populate Troop</button>
   <button type="button" class="btn btn-primary" style="margin: 10px;" (click)="age()">Age Troop</button>
@@ -17,7 +17,7 @@
       <th scope="col">Weight</th>
       <th scope="col">Is Mutant?</th>
     </tr>
-    <tr *ngFor="let monkey of troop?.monkeys">
+    <tr *ngFor="let monkey of (troop$ | async)?.monkeys">
       <td (click)="onMonkeySelect(monkey.id); toggleCard = !toggleCard"><a href="#">{{ monkey.name | titlecase }}</a></td>
       <td>{{ monkey.gender | titlecase }}</td>
       <td>{{ monkey.age }}</td>

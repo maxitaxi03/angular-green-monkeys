@@ -7,6 +7,7 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
 import { TroopComponent } from './components/troop/troop.component';
 import { RegionComponent } from './components/region/region.component';
 import { MonkeyComponent } from './components/monkey/monkey.component';
+import { TroopSearchComponent } from './troop-search/troop-search.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { MonkeyComponent } from './components/monkey/monkey.component';
     StatisticsComponent,
     RegionComponent,
     MonkeyComponent,
+    TroopSearchComponent,
   ],
   imports: [
     BrowserModule,
