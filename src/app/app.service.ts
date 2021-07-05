@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class AppService {
   private _region!: Region;
+  private _troop!: Troop;
   private _activeTroop$!: Observable<Troop>;
 
   constructor() {}
@@ -36,7 +37,9 @@ export class AppService {
       // if not search term, return empty monkey array.
       return of([]);
     }
-    return of([]);
+    return of(
+      this._troop.monkeys.filter((monkey) => monkey.name.startsWith(term))
+    );
   }
   createRegion(name: string): void {
     this._region = new Region(name);
