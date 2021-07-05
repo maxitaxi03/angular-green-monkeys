@@ -3,8 +3,8 @@ import { Observable, Subject } from 'rxjs';
 import {
   debounceTime, distinctUntilChanged, switchMap
 } from 'rxjs/operators';
-import { AppService } from '../app.service';
-import { Troop } from '../models/troop.model';
+import { AppService } from '../../app.service';
+import { Troop } from '../../models/troop.model';
 
 @Component({
   selector: 'app-troop-search',
