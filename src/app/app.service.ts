@@ -58,6 +58,17 @@ export class AppService {
   findTroop(name: string): Troop | undefined {
     return this._region.findTroop(name);
   }
+  getMonkeyById(id: number) {
+    let copyArr: Monkey[] = [];
+    this._region.troops.forEach(
+      troop => copyArr.concat(troop.monkeys).
+      filter(troop.monkeys => troop.monkeys.), 
+      
+    );
+
+  }
+
+
   fetchOrders = async (userId: any) => {
     return `${userId}'s order data`;
   };
