@@ -12,6 +12,11 @@
   <h5>Region: {{region?.name}}</h5>
 </div>
 
-<div style="margin: 10px; padding: 5px;" >
+<div style="margin: 10px; padding: 5px;">
   <statistics [region]="region"></statistics>
+</div>
+
+<div style="margin: 10px; padding: 5px;">
+  <p>this is some text</p>
+  <monkey [monkey]="activeMonkey$ | async"></monkey>
 </div>

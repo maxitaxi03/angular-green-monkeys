@@ -2,6 +2,7 @@
     <!-- img src="" alt="Avatar" style="width:100%" -->
     <div class="container">
       <h4 [ngClass]="{'is-dead': !monkey.isAlive}"><b>{{(monkey$ | async)?.name}}</b></h4>
+      <p>Monkey name: {{monkey.name}}</p>
       <p>Age: {{monkey.age}}</p>
       <p>Status: {{(monkey$ | async)?.isAlive ? 'Alive' : 'Dead'}}</p>
       <p>Mutant: {{(monkey$ | async)?.isMutant ? 'Yes' : 'No'}}</p>
