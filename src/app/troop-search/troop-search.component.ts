@@ -37,6 +37,8 @@ export class TroopSearchComponent implements OnInit {
   
   onTroopSelected(troop: Troop): void {
     console.log(troop.name);
+    this.appService.activeTroop$.next(troop);
+    this.searchTerms.next('');
     // Todo set as activeTroop on AppService
   }
 

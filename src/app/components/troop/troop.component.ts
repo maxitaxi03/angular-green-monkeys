@@ -1,8 +1,8 @@
-import { Component, Input, OnInit, Output, EventEmitter, OnDestroy, DoCheck } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { AppService } from 'src/app/app.service';
 import { Monkey } from 'src/app/models/monkey.model';
 import { Troop } from 'src/app/models/troop.model';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-troop',
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./troop.component.css']
 })
 export class TroopComponent implements OnInit,
-  OnDestroy, DoCheck {
+  OnDestroy {
   troop$?: Observable<Troop>;
   @Output() monkeySelected = new EventEmitter<Monkey>();
   toggleCard = false;
@@ -19,15 +19,8 @@ export class TroopComponent implements OnInit,
   logger = '';
   constructor(private appService: AppService) {}
   ngOnInit(): void {
-    this.troop$ = this.appService.activeTroop;
-    this.troop$?.subscribe(
-      (troop: Troop) => console.log('TroopComponent Troop', troop));
-  }
-  // https://angular.io/guide/lifecycle-hooks#docheck
-  ngDoCheck(): void {
-    this.troop$ = this.appService.activeTroop;
-    this.troop$?.subscribe(
-      (troop: Troop) => console.log('TroopComponent Troop', troop));
+    this.appService.activeTroop$.subscribe(troop => 
+      this.troop$ = of(troop));
   }
   populate(): void {
     this.troop$?.subscribe(

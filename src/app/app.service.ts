@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Region } from './models/region.model';
 import { Troop } from './models/troop.model';
 import { Monkey } from './models/monkey.model';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -11,8 +11,11 @@ import { map } from 'rxjs/operators';
 export class AppService {
   private _region!: Region;
   private _activeTroop$!: Observable<Troop>;
+  activeTroop$!: BehaviorSubject<Troop>;
 
-  constructor() { }
+  constructor() { 
+    this.activeTroop$ = new BehaviorSubject<Troop>(new Troop());
+  }
   get region(): Region {
      return this._region;
   }
@@ -27,14 +30,14 @@ export class AppService {
       // if not search term, return empty troop array.
       return of([]);
     }
-    return of(this._region.troops.filter(troop => troop.name.startsWith(term)));
+    return of(this._region.searchTroops(term));
   }
   searchMonkeys(term: string): Observable<Monkey[]> {
     if (!term.trim()) {
       // if not search term, return empty monkey array.
       return of([]);
     }
-    return of([]);
+    return of(this._region.searchMonkeys(term));
   }
   createRegion(name: string): void {
     this._region = new Region(name);  
