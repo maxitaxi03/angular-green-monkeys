@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Region } from './models/region.model';
 import { Troop } from './models/troop.model';
 import { Monkey } from './models/monkey.model';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -13,6 +13,8 @@ export class AppService {
   private _troop!: Troop;
   private _activeTroop$!: Observable<Troop>;
   private _activeMonkey$!: Observable<Monkey>;
+  private _activeMonkeyB$ = new BehaviorSubject(new Monkey());
+  activeMonkeySub = this._activeMonkeyB$.asObservable();
 
   constructor() {}
   get region(): Region {
@@ -30,6 +32,10 @@ export class AppService {
   set activeMonkey(monkey: Observable<Monkey>) {
     this._activeMonkey$ = monkey;
   }
+  activeMonkeyB(monkey: Monkey) {
+    this._activeMonkeyB$.next(monkey);
+  }
+
   
   searchTroops(term: string): Observable<Troop[]> {
     if (!term.trim()) {

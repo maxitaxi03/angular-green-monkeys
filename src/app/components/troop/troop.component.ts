@@ -58,8 +58,6 @@ export class TroopComponent implements OnInit,
         }
       }); 
   }
-  ngOnDestroy(): void {
-  
-  }
+  ngOnDestroy(): void {}
    
 }

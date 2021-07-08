@@ -32,7 +32,9 @@ export class MonkeySearchComponent implements OnInit {
   }
   onMonkeySelected(monkey: Monkey): void {
     console.log(monkey.name);
-    this.appService.activeMonkey = of<Monkey>(monkey);
+    //this.appService.activeMonkey = of<Monkey>(monkey);
+    this.appService.activeMonkeyB;
+    this.searchTerms.next('');
     // Todo set as activeTroop on AppService
   }
 
