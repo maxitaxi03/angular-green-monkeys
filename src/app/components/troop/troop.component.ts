@@ -1,9 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
+import  { Subscription } from 'rxjs';
 import { AppService } from 'src/app/app.service';
 import { Monkey } from 'src/app/models/monkey.model';
 import { Troop } from 'src/app/models/troop.model';
-import { Observable, of } from 'rxjs';
-
 @Component({
   selector: 'app-troop',
   templateUrl: './troop.component.html',
@@ -11,7 +10,8 @@ import { Observable, of } from 'rxjs';
 })
 export class TroopComponent implements OnInit,
   OnDestroy {
-  troop$?: Observable<Troop>;
+  troop?: Troop;
+  troopSubscription!: Subscription;
   @Output() monkeySelected = new EventEmitter<Monkey>();
   toggleCard = false;
   
@@ -19,40 +19,31 @@ export class TroopComponent implements OnInit,
   logger = '';
   constructor(private appService: AppService) {}
   ngOnInit(): void {
-    this.appService.activeTroop$.subscribe(troop => 
-      this.troop$ = of(troop));
+    this.troopSubscription = this.appService.activeTroop$.subscribe(troop => 
+      this.troop = troop);
   }
   populate(): void {
-    this.troop$?.subscribe(
-      (troop: Troop) => troop.populate());
+    this.troop?.populate();
   }
   age(): void {
-    this.troop$?.subscribe(
-      (troop: Troop) => troop.ageAll());
+    this.troop?.ageAll();
   }
   feed(): void {
-    this.troop$?.subscribe(
-      (troop: Troop) => troop.feedAll());
+    this.troop?.feedAll();
   }
   engage(): void {
-    if (!this.troop$) return;
-    this.troop$?.subscribe(
-      (troop: Troop) => {
-        this.logger = troop.engage();
-      });
+    if (!this.troop) return;
+    this.logger = this.troop?.engage();
   }
   onMonkeySelect(id: number): void {
-    this.troop$?.subscribe(
-      (troop: Troop) => {
-        let monkey = troop.monkeys.find(monkey => monkey.id === id);
-        if (monkey) {
-          this.monkeySelected.emit(monkey);
-          this.selectedMonkey = monkey;
-        }
-      }); 
+    let monkey = this.troop?.monkeys.find(monkey => monkey.id === id);
+    if (monkey) {
+      this.monkeySelected.emit(monkey);
+      this.selectedMonkey = monkey;
+    }
   }
   ngOnDestroy(): void {
-  
+    this.troopSubscription.unsubscribe();
   }
    
 }

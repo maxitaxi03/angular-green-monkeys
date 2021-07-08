@@ -3,7 +3,8 @@
 </div>
 <div id="monkey-search-component" style="margin: 10px; min-width: 50%;">
   <label for="monkey-search-box">Monkey Search</label>
-  <input #searchBox id="monkey-search-box" (input)="searchMonkeys(searchBox.value)" />
+  <input #searchBox id="monkey-search-box" 
+    (input)="searchMonkeys(searchBox.value)" />
   <ul class="search-result">
       <li *ngFor="let monkey of monkeys$ | async" (click)="onMonkeySelected(monkey)">
         {{monkey.name}}::{{monkey.id}}
@@ -13,7 +14,7 @@
 <div style="margin: 10px; background-color: orange;">
   <region (troopSelected)="onTroopSelected($event)"></region>
 </div>
-<div style="margin: 10px; background-color: grey;" *ngIf="activeTroop$ | async">
+<div style="margin: 10px; background-color: grey;" *ngIf="activeTroop">
   <app-troop (monkeySelected)="onMonkeySelected($event)"></app-troop>
   <h5>Region: {{region?.name}}</h5>
 </div>

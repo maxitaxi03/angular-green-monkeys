@@ -3,7 +3,6 @@ import { Region } from './models/region.model';
 import { Troop } from './models/troop.model';
 import { Monkey } from './models/monkey.model';
 import { Observable, of, BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +10,10 @@ import { map } from 'rxjs/operators';
 export class AppService {
   private _region!: Region;
   private _activeTroop$!: Observable<Troop>;
-  activeTroop$!: BehaviorSubject<Troop>;
-
-  constructor() { 
-    this.activeTroop$ = new BehaviorSubject<Troop>(new Troop());
-  }
+  private activeTroopSource: BehaviorSubject<Troop> = new BehaviorSubject(new Troop());
+  activeTroop$ = this.activeTroopSource.asObservable();
+  
+  constructor() {}
   get region(): Region {
      return this._region;
   }
@@ -24,6 +22,9 @@ export class AppService {
   }
   set activeTroop(troop: Observable<Troop>) {
     this._activeTroop$ = troop;
+  }
+  changeActiveTroop(troop: Troop) {
+    this.activeTroopSource.next(troop);
   }
   searchTroops(term: string): Observable<Troop[]> {
     if (!term.trim()) {
@@ -48,14 +49,4 @@ export class AppService {
   findTroop(name: string): Troop | undefined {
     return this._region.findTroop(name);
   }
-  fetchOrders = async(userId: any) => {
-    return `${userId}'s order data`
-  }
-  user$ = of({ uid: Math.random() });
-  orders$ = this.user$.pipe(
-    map(user => {
-        return this.fetchOrders(user.uid);
-    })
-  );
-
 }
