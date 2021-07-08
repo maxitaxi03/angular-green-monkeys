@@ -42,4 +42,5 @@ export class RegionComponent implements OnInit {
       console.log('Created new troop.');
     }
   }
+  
 }

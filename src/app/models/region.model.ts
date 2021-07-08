@@ -62,7 +62,16 @@ export class Region {
     this.troops.push(troop);
     console.log(this.toString());
   }
-
+  searchMonkeys(term: string): Monkey[] {
+    let monkeys: Monkey[] = [];
+    this.troops.forEach(troop => monkeys = monkeys.concat(troop.monkeys)); // concat operator returns a new array
+    return monkeys.filter(monkey => (monkey.id + '').startsWith(term)); // id is numeric, convert to string first
+    }
+    // searchTroops(term: string) {
+    //   let region: Region[] = [];
+    //   region.forEach(region => this.troops = this.troops.concat(region.troops));
+    //   return this.troops.filter((troop) => troop.name.startsWith(term))
+    // }
   toString(): string {
     return `${this.name} [Troops: ${
       this.troops.length

@@ -46,7 +46,7 @@ export class AppService {
       return of([]);
     }
     return of(
-      this._troop.monkeys.filter((monkey) => monkey.name.startsWith(term))
+      this._region.searchMonkeys(term),
     );
   }
   createRegion(name: string): void {
@@ -58,16 +58,16 @@ export class AppService {
   findTroop(name: string): Troop | undefined {
     return this._region.findTroop(name);
   }
-  getMonkeyById(id: number) {
-    let copyArr: Monkey[] = [];
-    this._region.troops.forEach(
-      troop => copyArr.concat(troop.monkeys).
-      filter(troop.monkeys => troop.monkeys.), 
+  // getMonkeyById(id: number) {
+  //   let copyArr: Monkey[] = [];
+  //   this._region.troops.forEach(
+  //     troop => copyArr.concat(troop.monkeys).
+  //     filter(troop.monkeys => troop.monkeys.), 
       
-    );
+  //   );
 
-  }
-
+  // }
+  
 
   fetchOrders = async (userId: any) => {
     return `${userId}'s order data`;
