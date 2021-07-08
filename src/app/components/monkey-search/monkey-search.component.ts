@@ -30,6 +30,12 @@ export class MonkeySearchComponent implements OnInit {
         }
       }); 
   }
+  onMonkeySelected(monkey: Monkey): void {
+    console.log(monkey.name);
+    this.appService.activeMonkey = of<Monkey>(monkey);
+    // Todo set as activeTroop on AppService
+  }
+
   
   ngOnInit(): void {
     this.monkeys$ = this.searchTerms.pipe(
