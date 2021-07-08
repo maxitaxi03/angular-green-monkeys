@@ -10,7 +10,7 @@ import { Observable, of, BehaviorSubject } from 'rxjs';
 export class AppService {
   private _region!: Region;
   private _activeTroop$!: Observable<Troop>;
-  private activeTroopSource: BehaviorSubject<Troop> = new BehaviorSubject(new Troop());
+  private activeTroopSource = new BehaviorSubject<Troop>(new Troop());
   activeTroop$ = this.activeTroopSource.asObservable();
   
   constructor() {}
