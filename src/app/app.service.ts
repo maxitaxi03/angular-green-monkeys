@@ -10,11 +10,13 @@ import { map } from 'rxjs/operators';
 })
 export class AppService {
   private _region!: Region;
-  private _troop!: Troop;
   private _activeTroop$!: Observable<Troop>;
   private _activeMonkey$!: Observable<Monkey>;
-  private _activeMonkeyB$ = new BehaviorSubject(new Monkey());
-  activeMonkeySub = this._activeMonkeyB$.asObservable();
+  
+  /***************************BEHAVIORSUBJECT*******************************/ 
+  private activeMonkeySource = new BehaviorSubject(new Monkey());
+  activeMonkey$ = this.activeMonkeySource.asObservable();
+  /***************************BEHAVIORSUBJECT*******************************/
 
   constructor() {}
   get region(): Region {
@@ -32,10 +34,11 @@ export class AppService {
   set activeMonkey(monkey: Observable<Monkey>) {
     this._activeMonkey$ = monkey;
   }
+ /***************************BEHAVIORSUBJECT*******************************/ 
   activeMonkeyB(monkey: Monkey) {
-    this._activeMonkeyB$.next(monkey);
+    this.activeMonkeySource.next(monkey);
   }
-
+ /***************************BEHAVIORSUBJECT*******************************/
   
   searchTroops(term: string): Observable<Troop[]> {
     if (!term.trim()) {

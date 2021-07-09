@@ -1,11 +1,10 @@
-<div class="card">
+<div class="card" *ngIf="monkey">
     <!-- img src="" alt="Avatar" style="width:100%" -->
     <div class="container">
-      <h4 [ngClass]="{'is-dead': !(monkey$ | async)?.isAlive}"><b>{{(monkey$ | async)?.name}}</b></h4>
-      <p>Monkey name: {{(monkey$ | async)?.name}}</p>
-      <p>Age: {{(monkey$ | async)?.age}}</p>
-      <p>Status: {{(monkey$ | async)?.isAlive ? 'Alive' : 'Dead'}}</p>
-      <p>Mutant: {{(monkey$ | async)?.isMutant ? 'Yes' : 'No'}}</p>
+      <h4 [ngClass]="{'is-dead': !monkey?.isAlive}"><b>{{monkey?.name}}</b></h4>
+      <p>Age: {{monkey.age}}</p>
+      <p>Status: {{monkey?.isAlive ? 'Alive' : 'Dead'}}</p>
+      <p>Mutant: {{monkey?.isMutant ? 'Yes' : 'No'}}</p>
     </div>
     <button (click)="findMyTroop()">Find My Troop</button>
   </div> 

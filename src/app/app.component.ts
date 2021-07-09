@@ -3,7 +3,7 @@ import { AppService } from './app.service';
 import { Monkey } from './models/monkey.model';
 import { Region } from './models/region.model';
 import { Troop } from './models/troop.model';
-import  { Observable, of, BehaviorSubject } from 'rxjs';
+import  { Observable, of, Subscription, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -15,12 +15,12 @@ export class AppComponent implements OnInit, DoCheck, OnDestroy {
   region: Region;
   activeTroop$?: Observable<Troop>;
   activeMonkey$?: Observable<Monkey>;
-  activeMonkeyB$!: BehaviorSubject<Monkey>;
-  activeMonk!: Monkey;
   activeMonkey!: Monkey;
   activeRegion?: Region;
   selectedRegion?: Region;
   @Output() regionSelected = new EventEmitter<Region>();
+  activeMonkeySubscription!: Subscription;
+  private monkeySearchTerms = new Subject<string>();
 
   constructor(private appService: AppService) {
     this.appService.createRegion('Barbados');
@@ -33,15 +33,18 @@ export class AppComponent implements OnInit, DoCheck, OnDestroy {
       this.activeMonkey = monkey;
       console.log(monkey.name);
     });
-    this.appService.activeMonkeySub.subscribe(monkey => this.activeMonk = monkey);
+    this.activeMonkeySubscription = this.appService.activeMonkey$.subscribe(monkey => this.activeMonkey = monkey);
   }
-  ngOnDestroy(): void {}
+  
   ngDoCheck(): void {
     this.activeMonkey$ = this.appService.activeMonkey;
     this.activeMonkey$?.subscribe(monkey => {
       this.activeMonkey = monkey;
       console.log(monkey.name);
     });
+  }
+  searchMonkeys(term: string): void {
+    this.monkeySearchTerms.next(term);
   }
   addNewTroop(name: string): void {
     this.appService.addNewTroopToRegion(name);
@@ -52,8 +55,13 @@ export class AppComponent implements OnInit, DoCheck, OnDestroy {
     console.log(`Troop ${troop.name} is now active.`);
   }
   onMonkeySelected(monkey: any) {
-    this.appService.activeMonkey = of<Monkey>(monkey); // What's this?
-    this.activeMonkey$ = this.appService.activeMonkey;
+    // this.appService.activeMonkey = of<Monkey>(monkey); // What's this?
+    // this.activeMonkey$ = this.appService.activeMonkey;
+    this.activeMonkey = monkey;
+    this.monkeySearchTerms.next('');
     console.log(`Monkey ${monkey.name} is now active`);
+  }
+  ngOnDestroy(): void { 
+    this.activeMonkeySubscription.unsubscribe();
   }
 }

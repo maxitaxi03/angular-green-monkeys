@@ -4,8 +4,8 @@
     <ul class="search-result">
       <li *ngFor="let monkey of monkeys$ | async" (click)="onMonkeySelected(monkey)">
           {{monkey.id}}
-          {{monkey.name}}  
+          {{monkey.name}}
+           
         </li>
       </ul>
 </div>
-<!--monkey [monkey]="activeMonkey"></monkey-->
