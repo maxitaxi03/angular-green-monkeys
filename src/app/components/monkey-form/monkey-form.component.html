@@ -1,4 +1,4 @@
-<form novalidate>
+<form novalidate [formGroup]="monkeyForm" (ngSubmit)="submit()">
     <div class=”form-group”>
        <label>Name</label>
       <input type=”text” class=”form-control”>
@@ -22,5 +22,5 @@
 
 
 <div>
-<button ngSubmit?>Save</button>
+<button type="submit">Save</button>
 </div>

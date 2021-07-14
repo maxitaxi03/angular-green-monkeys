@@ -24,6 +24,25 @@ export class MonkeyFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.createForm();
+    this.createFormControls();
   }
-
+  createFormControls() {
+    this.name = new FormControl("", Validators.required);
+    this.age = new FormControl("", Validators.required);
+    this.weight = new FormControl("", Validators.required);
+  }
+  createForm() {
+    this.monkeyForm = new FormGroup({
+      name: this.name,
+      age: this.age,
+      weight: this.weight
+    })
+  }
+  submit() {
+    if (this.monkeyForm.valid) {
+      console.log(this.monkeyForm.value);
+      this.monkeyForm.reset();
+    }
+  }
 }
