@@ -1,21 +1,23 @@
-<form novalidate (ngSubmit)="submit()">
-  <div >
+
+<form novalidate (ngSubmit)="submit()" #f="ngForm" >
+  <div>
     <label>Name</label>
-    <input type="”text”" class="”form-control”" />
+    <input type="text" name="Name" ngModel/>
   </div>
   <div>
     <label>Age</label>
-    <input type="”text”" class="”form-control”" />
+    <input type="text" name="Age" ngModel/>
   </div>
   <div>
     <label>Weight</label>
-    <input type="”text”" class="”form-control”" />
+    <input type="text" name="Weight" ngModel/>
   </div>
   <div>
     <label>Gender</label>
-    <input type="”text”" class="”form-control”" />
+    <input type="text" name="Gender" ngModel/>
   </div>
   <div>
     <button type="submit">Save</button>
   </div>
 </form>
+<pre>{{f.value | json}}</pre>

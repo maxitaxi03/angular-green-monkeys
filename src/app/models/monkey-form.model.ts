@@ -1,4 +1,4 @@
-export class Form {
+export class monkeyForm {
     name: String;
     age: String;
     weight: String;
