@@ -10,6 +10,7 @@ import { MonkeyComponent } from './components/monkey/monkey.component';
 import { TroopSearchComponent } from './components/troop-search/troop-search.component';
 import { MonkeySearchComponent } from './components/monkey-search/monkey-search.component';
 import { MonkeyFormComponent } from './components/monkey-form/monkey-form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MonkeyFormComponent } from './components/monkey-form/monkey-form.compon
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule, 
+    FormsModule,   
   ],
   providers: [],
   bootstrap: [AppComponent]
