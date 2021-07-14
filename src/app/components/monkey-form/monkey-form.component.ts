@@ -1,12 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import {
-  ReactiveFormsModule,
-  FormsModule,
   FormGroup,
   FormControl,
   Validators,
-  FormBuilder,
-  Form
+  
 } from "@angular/forms";
 import { Monkey } from 'src/app/models/monkey.model';
 
