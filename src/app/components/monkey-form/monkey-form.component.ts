@@ -11,13 +11,13 @@ import {
 import { Monkey } from 'src/app/models/monkey.model';
 
 @Component({
-  selector: 'app-monkey-edit',
-  templateUrl: './monkey-edit.component.html',
-  styleUrls: ['./monkey-edit.component.css']
+  selector: 'app-monkey-form',
+  templateUrl: './monkey-form.component.html',
+  styleUrls: ['./monkey-form.component.css']
 })
 export class MonkeyFormComponent implements OnInit {
-  @Input('monkey')monkey!: Monkey;
-  monkeyForm!: FormGroup;
+  @Input('monkey')monkey?: Monkey;
+  monkeyForm?: FormGroup;
   name!: FormControl;
   age!: FormControl;
   weight!: FormControl;
@@ -37,10 +37,10 @@ export class MonkeyFormComponent implements OnInit {
       name: this.name,
       age: this.age,
       weight: this.weight
-    })
+    });
   }
   submit() {
-    if (this.monkeyForm.valid) {
+    if (this.monkeyForm?.valid) {
       console.log(this.monkeyForm.value);
       this.monkeyForm.reset();
     }
