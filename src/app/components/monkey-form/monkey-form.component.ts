@@ -40,13 +40,20 @@ export class MonkeyFormComponent implements OnInit {
     }
   } */
   ngOnInit(): void {}
-  monkForm: monkeyForm = new monkeyForm();
+  monkeyForm: monkeyForm = new monkeyForm();
+  @Input('monkey')monkey!: Monkey;
   @ViewChild('f') form: any;
 
   submit() {
     if (this.form.valid) {
+      this.monkey.name = this.monkeyForm.name;
+      this.monkey.age = this.monkeyForm.age;
+      this.monkey.weight = this.monkeyForm.weight;
+      this.monkey.gender = this.monkeyForm.gender;
       console.log("form submitted");
       this.form.reset();
     }
+    
   }
+  
 }

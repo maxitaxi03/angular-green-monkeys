@@ -2,19 +2,35 @@
 <form novalidate (ngSubmit)="submit()" #f="ngForm" >
   <div>
     <label>Name</label>
-    <input type="text" name="Name" ngModel/>
+    <input type="text" 
+     name="Name"  
+     [(ngModel)]="monkeyForm.name"
+     required
+     />
   </div>
   <div>
     <label>Age</label>
-    <input type="text" name="Age" ngModel/>
+    <input type="text" 
+     name="Age" 
+     [(ngModel)]="monkeyForm.age"
+     required
+     />
   </div>
   <div>
     <label>Weight</label>
-    <input type="text" name="Weight" ngModel/>
+    <input type="text" 
+     name="Weight" 
+     [(ngModel)]="monkeyForm.weight"
+     required
+     />
   </div>
   <div>
     <label>Gender</label>
-    <input type="text" name="Gender" ngModel/>
+    <input type="text" 
+     name="Gender" 
+     [(ngModel)]="monkeyForm.gender"
+     required
+     />
   </div>
   <div>
     <button type="submit">Save</button>
