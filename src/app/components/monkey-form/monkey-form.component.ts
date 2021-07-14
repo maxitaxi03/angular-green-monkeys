@@ -15,7 +15,7 @@ import { Monkey } from 'src/app/models/monkey.model';
   templateUrl: './monkey-edit.component.html',
   styleUrls: ['./monkey-edit.component.css']
 })
-export class MonkeyEditComponent implements OnInit {
+export class MonkeyFormComponent implements OnInit {
   @Input('monkey')monkey!: Monkey;
   monkeyForm!: FormGroup;
   name!: FormControl;

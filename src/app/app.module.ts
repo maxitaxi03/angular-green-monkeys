@@ -9,7 +9,7 @@ import { RegionComponent } from './components/region/region.component';
 import { MonkeyComponent } from './components/monkey/monkey.component';
 import { TroopSearchComponent } from './components/troop-search/troop-search.component';
 import { MonkeySearchComponent } from './components/monkey-search/monkey-search.component';
-import { MonkeyEditComponent } from './components/monkey-edit/monkey-edit.component';
+import { MonkeyFormComponent } from './components/monkey-form/monkey-form.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { MonkeyEditComponent } from './components/monkey-edit/monkey-edit.compon
     MonkeyComponent,
     TroopSearchComponent,
     MonkeySearchComponent,
-    MonkeyEditComponent,
+    MonkeyFormComponent,
   ],
   imports: [
     BrowserModule,

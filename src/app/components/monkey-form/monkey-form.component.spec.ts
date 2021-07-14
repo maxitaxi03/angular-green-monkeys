@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MonkeyEditComponent } from './monkey-edit.component';
+import { MonkeyFormComponent } from './monkey-form.component';
 
-describe('MonkeyEditComponent', () => {
-  let component: MonkeyEditComponent;
-  let fixture: ComponentFixture<MonkeyEditComponent>;
+describe('MonkeyFormComponent', () => {
+  let component: MonkeyFormComponent;
+  let fixture: ComponentFixture<MonkeyFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MonkeyEditComponent ]
+      declarations: [ MonkeyFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MonkeyEditComponent);
+    fixture = TestBed.createComponent(MonkeyFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
