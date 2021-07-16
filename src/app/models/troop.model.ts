@@ -99,5 +99,7 @@ export class Troop {
         
     }
     
-    
+    findMonkey(id: number) {
+        return this.monkeys.find((monkey) => monkey.id === id);
+    }
 }

@@ -72,6 +72,13 @@ export class Region {
     //   region.forEach(region => this.troops = this.troops.concat(region.troops));
     //   return this.troops.filter((troop) => troop.name.startsWith(term))
     // }
+
+    findMonkeyById(id: number) {
+      return this.troops.find((troop) => troop.findMonkey(id));
+    }
+    findTroopById(id: number) {
+      return this.troops.find((troop) => troop.id === id);
+    }
   toString(): string {
     return `${this.name} [Troops: ${
       this.troops.length

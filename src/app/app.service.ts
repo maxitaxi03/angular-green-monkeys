@@ -70,13 +70,13 @@ export class AppService {
   }
   
   saveMonkey(data: IMonkey): number {
-    let foundID = this._region.troops.find((troop) => troop.id);
-    if (!data.monkeyId) {
-      let monkey = new Monkey();
+    this._region.findTroopById(data.troopId);
+    if (!data.id) {
+      let monkey = new Monkey(data);
       this._region.troops.filter((troop) => troop.monkeys.push(monkey))
       return monkey.id;
     }
-    else return -1;
+    
   }
 
 
