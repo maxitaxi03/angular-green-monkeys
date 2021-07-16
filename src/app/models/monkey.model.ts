@@ -20,7 +20,7 @@ export class Monkey {
     troopId: string = '';
 
 
-    constructor(age?: number, troopId?: string) {
+    constructor(age?: number, troopId?: string, name?: string, weight?: number) {
         this.gender = Utils.randomBoolean() ? 'male' : 'female';
         this.name = Utils.randomName(this.gender);
         this.age = age ? age : Utils.getRandomInt(Monkey.minAge, Monkey.maxAge);

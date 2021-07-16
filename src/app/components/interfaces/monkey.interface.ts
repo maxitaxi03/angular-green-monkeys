@@ -1,5 +1,5 @@
 export interface IMonkey {
-    id?: number,
+    id?: string,
     troopId: number,
     name: string,
     age: number,

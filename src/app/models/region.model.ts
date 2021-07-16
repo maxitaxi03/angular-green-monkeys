@@ -73,7 +73,7 @@ export class Region {
     //   return this.troops.filter((troop) => troop.name.startsWith(term))
     // }
 
-    findMonkeyById(id: number) {
+    findMonkeyById(id: string) {
       return this.troops.find((troop) => troop.findMonkey(id));
     }
     findTroopById(id: number) {

@@ -72,7 +72,7 @@ export class AppService {
   saveMonkey(data: IMonkey): number {
     this._region.findTroopById(data.troopId);
     if (!data.id) {
-      let monkey = new Monkey(data);
+      let monkey = new Monkey(data.age, data.troopId, data.name, data.weight, );
       this._region.troops.filter((troop) => troop.monkeys.push(monkey))
       return monkey.id;
     }

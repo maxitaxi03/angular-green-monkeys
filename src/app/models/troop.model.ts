@@ -99,7 +99,8 @@ export class Troop {
         
     }
     
-    findMonkey(id: number) {
-        return this.monkeys.find((monkey) => monkey.id === id);
+    findMonkey(id: string) {
+        return this.monkeys.filter((monkey) => monkey.id.startsWith(id));
+        
     }
 }
