@@ -4,6 +4,7 @@ import { Troop } from './models/troop.model';
 import { Monkey } from './models/monkey.model';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { IMonkey } from './components/interfaces/monkey.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -68,13 +69,25 @@ export class AppService {
     return this._region.findTroop(name);
   }
   
-  fetchOrders = async (userId: any) => {
-    return `${userId}'s order data`;
-  };
-  user$ = of({ uid: Math.random() });
-  orders$ = this.user$.pipe(
-    map((user) => {
-      return this.fetchOrders(user.uid);
-    })
-  );
+  saveMonkey(data: IMonkey): number {
+    let foundID = this._region.troops.find((troop) => troop.id);
+    if (!data.monkeyId) {
+      let monkey = new Monkey();
+      this._region.troops.filter((troop) => troop.monkeys.push(monkey))
+      return monkey.id;
+    }
+    else return -1;
+  }
+
+
+
+  // fetchOrders = async (userId: any) => {
+  //   return `${userId}'s order data`;
+  // };
+  // user$ = of({ uid: Math.random() });
+  // orders$ = this.user$.pipe(
+  //   map((user) => {
+  //     return this.fetchOrders(user.uid);
+  //   })
+  // );
 }
