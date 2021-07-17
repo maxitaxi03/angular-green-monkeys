@@ -76,7 +76,7 @@ export class Region {
     findMonkeyById(id: string) {
       return this.troops.find((troop) => troop.findMonkey(id));
     }
-    findTroopById(id: number) {
+    findTroopById(id: string) {
       return this.troops.find((troop) => troop.id === id);
     }
   toString(): string {
