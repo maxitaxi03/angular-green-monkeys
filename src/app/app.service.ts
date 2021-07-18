@@ -83,6 +83,7 @@ export class AppService {
     // find this monkey in troop
     // update the relevant fields
     // return the monkey id
+    this._region.findMonkeyById(data.id);
     }
     return -1;
     }

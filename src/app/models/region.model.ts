@@ -74,7 +74,9 @@ export class Region {
     // }
 
     findMonkeyById(id: string) {
-      return this.troops.find((troop) => troop.findMonkey(id));
+      let monkeys: Monkey[] = [];
+      this.troops.forEach(troop => monkeys = monkeys.concat(troop.monkeys));
+      return monkeys.find(monkey => monkey.id === id);
     }
     findTroopById(id: string) {
       return this.troops.find((troop) => troop.id === id);

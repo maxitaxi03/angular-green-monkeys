@@ -3,7 +3,7 @@ import { Utils } from './utils.model';
 export class Troop {
     static maxSize = 3;
     name: string;
-    id: number;
+    id: string;
     monkeys: Monkey[] = [];
 
     constructor(name?: string) {
@@ -12,7 +12,7 @@ export class Troop {
             } else {
                 this.name = Utils.randomIntFromInterval(1000, 10000) + '';
             }
-            this.id = Utils.randomIntFromInterval(1, 10000);
+            this.id = Utils.randomIntFromInterval(1, 10000) + '';
             console.log(this.monkeys);
             console.log(`Total age of troop ${this.totalAge()}`);
             console.log(`Total weight of troop ${this.totalWeight()}`);
@@ -99,7 +99,4 @@ export class Troop {
         
     }
     
-    findMonkey(id: string) {
-        return this.monkeys.find((monkey) => monkey.id === id);
-    }
 }
