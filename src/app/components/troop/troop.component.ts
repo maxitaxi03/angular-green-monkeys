@@ -48,7 +48,7 @@ export class TroopComponent implements OnInit,
         this.logger = troop.engage();
       });
   }
-  onMonkeySelect(id: number): void {
+  onMonkeySelect(id: string): void {
     this.troop$?.subscribe(
       (troop: Troop) => {
         let monkey = troop.monkeys.find(monkey => monkey.id === id);

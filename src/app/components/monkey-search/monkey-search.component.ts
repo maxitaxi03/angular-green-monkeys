@@ -21,7 +21,7 @@ export class MonkeySearchComponent implements OnInit {
   search(term: string): void {
     this.searchTerms.next(term);
   }
-  onMonkeySelect(id: number): void {
+  onMonkeySelect(id: string): void {
     this.troop$?.subscribe(
       (troop: Troop) => {
         let monkey = troop.monkeys.find(monkey => monkey.id === id);

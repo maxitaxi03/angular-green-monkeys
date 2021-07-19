@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { monkeyForm } from 'src/app/models/monkey-form.model';
-import { Monkey } from 'src/app/models/monkey.model';
+import { IMonkey } from '../interfaces/monkey.interface';
 
 @Component({
   selector: 'app-monkey-form',
@@ -41,10 +41,10 @@ export class MonkeyFormComponent implements OnInit {
   } */
   ngOnInit(): void {}
   monkeyForm: monkeyForm = new monkeyForm();
-  @Input('monkey')monkey!: Monkey;
+  @Input('monkey')monkey!: IMonkey;
   @ViewChild('f') form: any;
 
-  submit() {
+  onSubmit() {
     if (this.form.valid) {
       this.monkey.name = this.monkeyForm.name;
       this.monkey.age = this.monkeyForm.age;
@@ -52,6 +52,7 @@ export class MonkeyFormComponent implements OnInit {
       this.monkey.gender = this.monkeyForm.gender;
       console.log("form submitted");
       this.form.reset();
+
     }
     
   }
