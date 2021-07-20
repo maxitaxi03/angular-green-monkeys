@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AppService } from 'src/app/app.service';
 import { monkeyForm } from 'src/app/models/monkey-form.model';
 import { IMonkey } from '../interfaces/monkey.interface';
 
@@ -15,7 +16,7 @@ export class MonkeyFormComponent implements OnInit {
   name!: FormControl;
   age!: FormControl;
   weight!: FormControl;
-  constructor() { }
+  
 
   ngOnInit(): void {
     this.createForm();
@@ -44,13 +45,16 @@ export class MonkeyFormComponent implements OnInit {
   @Input('monkey')monkey!: IMonkey;
   @ViewChild('f') form: any;
 
+  constructor(private appService: AppService) { }
   onSubmit() {
     if (this.form.valid) {
-      this.monkey.name = this.monkeyForm.name;
-      this.monkey.age = this.monkeyForm.age;
-      this.monkey.weight = this.monkeyForm.weight;
-      this.monkey.gender = this.monkeyForm.gender;
-      console.log("form submitted");
+      // this.monkey.name = this.monkeyForm.name;
+      // this.monkey.age = this.monkeyForm.age;
+      // this.monkey.weight = this.monkeyForm.weight;
+      // this.monkey.gender = this.monkeyForm.gender;
+      // 
+      this.appService.saveMonkey(this.monkey);
+      console.log(`${this.monkey.id} and the form submits`);
       this.form.reset();
 
     }

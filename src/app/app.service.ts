@@ -71,7 +71,7 @@ export class AppService {
   
   saveMonkey(data: IMonkey): string {
     let monkeyId = -1 + '';
-    const troop = this._region.findTroopById(data.troopId);
+    const troop = this._region.findTroopById("data.troopId");
     if (!troop) {
     return monkeyId; // Can't add monkey to an invalid troop;
     }
@@ -83,7 +83,7 @@ export class AppService {
     // find this monkey in troop
     // update the relevant fields
     // return the monkey id
-    let monkey = this._region.findMonkeyById(data.id);
+    const monkey = this._region.findMonkeyById(data.id);
     if (monkey) {
       monkey.id = data.id;
       monkey.name = data.name;

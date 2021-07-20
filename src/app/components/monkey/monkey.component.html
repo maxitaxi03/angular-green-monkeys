@@ -7,7 +7,8 @@
       <p>Mutant: {{monkey?.isMutant ? 'Yes' : 'No'}}</p>
     </div>
     <button (click)="findMyTroop()">Find My Troop</button>
+    <div>
+      <app-monkey-form [monkey]="monkey"></app-monkey-form>
+    </div>
   </div> 
-  <div>
-    <app-monkey-form></app-monkey-form>
-  </div>
+ 
