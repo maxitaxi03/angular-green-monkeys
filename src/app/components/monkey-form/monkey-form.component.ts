@@ -1,15 +1,16 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, OnDestroy, DoCheck } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppService } from 'src/app/app.service';
 import { monkeyForm } from 'src/app/models/monkey-form.model';
 import { IMonkey } from '../interfaces/monkey.interface';
+import { Observable, of, BehaviorSubject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-monkey-form',
   templateUrl: './monkey-form.component.html',
   styleUrls: ['./monkey-form.component.css'],
 })
-export class MonkeyFormComponent implements OnInit {
+export class MonkeyFormComponent implements OnInit, DoCheck, OnDestroy  {
   /*
   @Input('monkey')monkey?: Monkey;
   monkeyForm?: FormGroup;
@@ -40,12 +41,23 @@ export class MonkeyFormComponent implements OnInit {
       this.monkeyForm.reset();
     }
   } */
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.monkeySubscription = this.appService.activeMonkey$.subscribe(monkey => this.monkey = monkey);
+    console.log(`the active monkey in appservice is ${this.monkey.name}`);
+  }
   monkeyForm: monkeyForm = new monkeyForm();
   @Input('monkey')monkey!: IMonkey;
+  activeMonkey!: IMonkey;
   @ViewChild('f') form: any;
+  monkeySubscription!: Subscription;
+  
+
 
   constructor(private appService: AppService) { }
+
+  ngDoCheck() {
+    
+  }
   onSubmit() {
     if (this.form.valid) {
       // this.monkey.name = this.monkeyForm.name;
@@ -56,9 +68,14 @@ export class MonkeyFormComponent implements OnInit {
       this.appService.saveMonkey(this.monkey);
       console.log(`${this.monkey.id} and the form submits`);
       this.form.reset();
-
     }
     
+    
+  }
+ 
+ 
+  ngOnDestroy(): void {
+    this.monkeySubscription.unsubscribe();
   }
   
 }

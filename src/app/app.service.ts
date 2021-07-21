@@ -71,7 +71,7 @@ export class AppService {
   
   saveMonkey(data: IMonkey): string {
     let monkeyId = -1 + '';
-    const troop = this._region.findTroopById("data.troopId");
+    const troop = this._region.findTroopById("");
     if (!troop) {
     return monkeyId; // Can't add monkey to an invalid troop;
     }
@@ -85,13 +85,18 @@ export class AppService {
     // return the monkey id
     const monkey = this._region.findMonkeyById(data.id);
     if (monkey) {
-      monkey.id = data.id;
-      monkey.name = data.name;
-      monkey.age = data.age;
-      monkey.troopId = data.troopId;
-      monkey.gender = data.gender;
-      monkey.weight = data.weight;
-      monkeyId = monkey.id;
+      // monkey.id = data.id;
+      // monkey.name = data.name;
+      // monkey.age = data.age;
+      // monkey.troopId = data.troopId;
+      // monkey.gender = data.gender;
+      // monkey.weight = data.weight;
+      // monkeyId = monkey.id;
+      data.id = monkey.id;
+      data.name = monkey.name;
+      data.age = monkey.age;
+      data.gender = monkey.gender;
+
     }
     
   }
