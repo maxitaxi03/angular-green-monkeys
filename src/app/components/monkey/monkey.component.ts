@@ -11,7 +11,7 @@ import { Troop } from 'src/app/models/troop.model';
 })
 export class MonkeyComponent implements OnInit, OnDestroy{
   @Input('monkey') monkey?: Monkey;
-  @Input('monkey$') monkey$?: Observable<Monkey>;
+  //@Input('monkey$') monkey$?: Observable<Monkey>;
   monkeySubscription!: Subscription;
   //monkey$?: Observable<Monkey>;
   myTroop!: Troop;

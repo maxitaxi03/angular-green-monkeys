@@ -41,10 +41,7 @@ export class MonkeyFormComponent implements OnInit, DoCheck, OnDestroy  {
       this.monkeyForm.reset();
     }
   } */
-  ngOnInit(): void {
-    this.monkeySubscription = this.appService.activeMonkey$.subscribe(monkey => this.monkey = monkey);
-    console.log(`the active monkey in appservice is ${this.monkey.name}`);
-  }
+  
   monkeyForm: monkeyForm = new monkeyForm();
   @Input('monkey')monkey!: IMonkey;
   activeMonkey!: IMonkey;
@@ -54,7 +51,10 @@ export class MonkeyFormComponent implements OnInit, DoCheck, OnDestroy  {
 
 
   constructor(private appService: AppService) { }
-
+  ngOnInit(): void {
+    this.monkeySubscription = this.appService.activeMonkey$.subscribe(monkey => this.monkey = monkey);
+    console.log(`the active monkey in appservice is ${this.monkey.name}`);
+  }
   ngDoCheck() {
     
   }
