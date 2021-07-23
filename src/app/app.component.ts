@@ -16,8 +16,7 @@ export class AppComponent implements OnInit, DoCheck, OnDestroy {
   activeTroop$?: Observable<Troop>;
   activeMonkey$?: Observable<Monkey>;
   activeMonkey!: Monkey;
-  activeRegion?: Region;
-  selectedRegion?: Region;
+  showMonkeyForm = false;
   @Output() regionSelected = new EventEmitter<Region>();
   activeMonkeySubscription!: Subscription;
   private monkeySearchTerms = new Subject<string>();
@@ -25,7 +24,7 @@ export class AppComponent implements OnInit, DoCheck, OnDestroy {
   constructor(private appService: AppService) {
     this.appService.createRegion('Barbados');
     this.region = this.appService.region;
-    
+
   }
   ngOnInit() {
     this.activeMonkey$ = this.appService.activeMonkey;
@@ -35,7 +34,7 @@ export class AppComponent implements OnInit, DoCheck, OnDestroy {
     });
     this.activeMonkeySubscription = this.appService.activeMonkey$.subscribe(monkey => this.activeMonkey = monkey);
   }
-  
+
   ngDoCheck(): void {
     this.activeMonkey$ = this.appService.activeMonkey;
     this.activeMonkey$?.subscribe(monkey => {
@@ -46,7 +45,7 @@ export class AppComponent implements OnInit, DoCheck, OnDestroy {
   searchMonkeys(term: string): void {
     this.monkeySearchTerms.next(term);
   }
-  addNewTroop(name: string): void {
+  addNewTroop(name?: string): void {
     this.appService.addNewTroopToRegion(name);
   }
   onTroopSelected(troop: any) {
@@ -61,7 +60,7 @@ export class AppComponent implements OnInit, DoCheck, OnDestroy {
     this.monkeySearchTerms.next('');
     console.log(`Monkey ${monkey.name} is now active`);
   }
-  ngOnDestroy(): void { 
+  ngOnDestroy(): void {
     this.activeMonkeySubscription.unsubscribe();
   }
 }

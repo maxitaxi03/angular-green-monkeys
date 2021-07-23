@@ -1,6 +1,6 @@
 <div id="search-component">
-    <label for="search-box">Troop Search</label>
-    <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+    <label for="troop-search-box">Troop Search</label>
+    <input #searchBox id="troop-search-box" (input)="search(searchBox.value)" />
     <ul class="search-result">
         <li *ngFor="let troop of troops$ | async" (click)="onTroopSelected(troop)">
           {{troop.name}}

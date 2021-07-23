@@ -1,39 +1,29 @@
+<div>
 
-<form novalidate (ngSubmit)="onSubmit()" #f="ngForm" >
-  <div>
-    <label>Name</label>
-    <input type="text" 
-     name="name"  
-     [(ngModel)]="monkeyForm.name"
-     required
-     />
-  </div>
-  <div>
-    <label>Age</label>
-    <input type="text" 
-     name="age" 
-     [(ngModel)]="monkeyForm.age"
-     required
-     />
-  </div>
-  <div>
-    <label>Weight</label>
-    <input type="text" 
-     name="weight" 
-     [(ngModel)]="monkeyForm.weight"
-     required
-     />
-  </div>
-  <div>
-    <label>Gender</label>
-    <input type="text" 
-     name="gender" 
-     [(ngModel)]="monkeyForm.gender"
-     required
-     />
-  </div>
-  <div>
+  <form novalidate (ngSubmit)="onSubmit()" #form="ngForm" >
+    <label for="troopId">Troop</label>
+    <select id="troopId" name="troopId" [(ngModel)]="monkeyForm.troopId">
+      <option value="">--Please choose a troop--</option>
+      <option *ngFor="let troop of troops" [value]="troop.id">{{troop.name}}</option>
+    </select>
+
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" [(ngModel)]="monkeyForm.name" required />
+
+    <label for="age">Age</label>
+    <input type="number" id="age" name="age" [(ngModel)]="monkeyForm.age" required />
+
+    <label for="weight">Weight</label>
+    <input type="number" id="weight" name="weight" [(ngModel)]="monkeyForm.weight" required />
+
+    <label for="gender">Gender</label>
+    <select id="gender" name="gender" [(ngModel)]="monkeyForm.gender" required >
+      <option value="">--Please choose gender--</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+
     <button type="submit">Save</button>
-  </div>
-</form>
-<pre>{{f.value | json}}</pre>
+  </form>
+</div>
+<!--pre>{{form.value | json}}</pre-->

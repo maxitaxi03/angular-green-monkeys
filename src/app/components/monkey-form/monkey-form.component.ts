@@ -1,9 +1,8 @@
-import { Component, OnInit, Input, ViewChild, OnDestroy, DoCheck } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, OnInit, Input, ViewChild, OnDestroy } from '@angular/core';
 import { AppService } from 'src/app/app.service';
 import { monkeyForm } from 'src/app/models/monkey-form.model';
-import { IMonkey } from '../interfaces/monkey.interface';
-import { Observable, of, BehaviorSubject, Subscription, Subject } from 'rxjs';
+import { IMonkey } from '../../interfaces/monkey.interface';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-monkey-form',
@@ -11,42 +10,42 @@ import { Observable, of, BehaviorSubject, Subscription, Subject } from 'rxjs';
   styleUrls: ['./monkey-form.component.css'],
 })
 export class MonkeyFormComponent implements OnInit, OnDestroy  {
-  
+
   monkeyForm: monkeyForm = new monkeyForm();
   @Input('monkey')monkey!: IMonkey;
   activeMonkey!: IMonkey;
   @ViewChild('f') form: any;
   monkeySubscription!: Subscription;
-  private monkeySearchTerms = new Subject<string>();
-  
-
+  troopListSubscription!: Subscription;
+  troops: {id: string, name: string}[] = [];
 
   constructor(private appService: AppService) { }
   ngOnInit(): void {
+    this.troopListSubscription = this.appService.troopList.subscribe(list => this.troops = list);
     this.monkeySubscription = this.appService.activeMonkey$.subscribe(monkey => this.monkey = monkey);
     console.log(`the active monkey in appservice is ${this.monkey.name}`);
   }
-  // ngDoCheck() {
-    
-  // }
+
+  onTroopSelected(event: any): void {
+    // this.monkeyForm.troopId = event.target.value;
+  }
   onSubmit() {
     if (this.form.valid) {
-      // this.monkey.name = this.monkeyForm.name;
-      // this.monkey.age = this.monkeyForm.age;
-      // this.monkey.weight = this.monkeyForm.weight;
-      // this.monkey.gender = this.monkeyForm.gender;
-      // 
-      this.appService.saveMonkey(this.monkey);
-      console.log(`${this.monkey.id} and the form submits`);
+      this.appService.saveMonkey({
+        name: this.monkeyForm.name,
+        age: this.monkeyForm.age,
+        weight: this.monkeyForm.weight,
+        troopId: this.monkeyForm.troopId,
+        gender: this.monkeyForm.gender,
+        isAlive: true
+      });
       this.form.reset();
     }
-    
-    
   }
- 
- 
+
   ngOnDestroy(): void {
     this.monkeySubscription.unsubscribe();
+    this.troopListSubscription.unsubscribe();
   }
-  
+
 }

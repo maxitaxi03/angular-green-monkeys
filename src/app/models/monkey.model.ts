@@ -1,4 +1,5 @@
 import { Utils } from './utils.model';
+import {IMonkey} from '../interfaces/monkey.interface';
 
 export class Monkey {
     static minWeight: number = 1.50;
@@ -9,25 +10,41 @@ export class Monkey {
     id: string;
     name: string;
     imageUrl: string = "https://www.placemonkeys.com/500/350?random";
-    age: number;
+    age: number = 0;
     weight: number;
     injuries: number = 0;
     isMutant: boolean = false;
     isAlive: boolean = true;
-    gender: string;
+    gender: 'male' | 'female';
     numOfMutants: number = 0;
     numOfNormals: number = 0;
     troopId: string = '';
 
 
-    constructor(age?: number, name?: string, weight?: number,  troopId?: string,) {
+    constructor(troopId?: string, age?: number, data?: IMonkey) {
+      this.id = Utils.randomIntFromInterval(1, 10000) + '';
+      if (data) {
+        this.gender = data.gender;
+        this.name = data.name;
+        this.age = data.age;
+        this.troopId = data.troopId;
+        this.weight = data.weight;
+        this.isAlive = data.isAlive ? data.isAlive : false;
+      } else {
         this.gender = Utils.randomBoolean() ? 'male' : 'female';
         this.name = Utils.randomName(this.gender);
-        this.age = age ? age : Utils.getRandomInt(Monkey.minAge, Monkey.maxAge);
-        if (troopId) this.troopId = troopId;
+        this.age = age? age : Utils.getRandomInt(Monkey.minAge, Monkey.maxAge);
+        if (troopId) {
+          this.troopId = troopId;
+        }
         this.weight = Utils.randomIntFromInterval(Monkey.minWeight, Monkey.maxWeight);
-        this.id = Utils.randomIntFromInterval(1, 10000) + '';
+        this.isAlive = true;
+      }
     }
+  static fromIMonkey(data: IMonkey): Monkey {
+    return new Monkey(undefined, undefined, data);
+  }
+
     vitalStats() {
         return {isAlive: this.isAlive, isMutant: this.isMutant}
     }
@@ -43,7 +60,7 @@ export class Monkey {
         //this.numOfMutants++;
      }
      return this.age;
-    
+
     }
     injure() {
         this.injuries++;
@@ -53,7 +70,7 @@ export class Monkey {
         return this.isAlive;
     }
     /*
-    
+
     totAge(): number {
         let totAge: number = 0;
         totAge += this.age;
@@ -73,7 +90,7 @@ export class Monkey {
         let totNormals: number = 0;
         totNormals += this.numOfNormals;
         return totNormals;
-        
+
     } */
 
 }
