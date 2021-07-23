@@ -3,19 +3,19 @@ import { Monkey } from './monkey.model';
 import { Utils } from './utils.model';
 
 export class Region {
+  id: string;
   troops: Troop[] = [];
-  monkeysCount: number = 0;
   name: string;
 
   constructor(name?: string) {
-    if (name) {
-      this.name = name;
-    } else {
-      this.name = Utils.randomIntFromInterval(1000, 10000) + '';
-    }
+    this.id = Utils.randomIntFromInterval(1, 10000) + '';
+    this.name = name ? name : Utils.randomIntFromInterval(1000, 10000) + '';
   }
   findTroop(name: string): Troop | undefined {
     return this.troops.find((troop) => troop.name === name);
+  }
+  findTroopById(id: string) {
+    return this.troops.find((troop) => troop.id === id);
   }
   getMonkeyCount(): number {
     return this.troops.reduce(
@@ -44,23 +44,18 @@ export class Region {
     return totWeight;
   }
   grandAvgAge(): number {
-    let avgAge = this.grandTotalAge() / this.getMonkeyCount();
-    return avgAge;
+    return this.grandTotalAge() / this.getMonkeyCount();
   }
   grandAvgWeight(): number {
-    let avgWeight = this.grandTotalWeight() / this.getMonkeyCount();
-    return avgWeight;
+    return this.grandTotalWeight() / this.getMonkeyCount();
   }
-  createNewTroop(name?: string) {
+  createNewTroop(name?: string): string {
     let troop: Troop;
-    if (name) {
-      troop = new Troop(name);
-    } else {
-      troop = new Troop();
-    }
+    troop = new Troop(this.id, name);
     troop.populate();
     this.troops.push(troop);
-    console.log(this.toString());
+    console.log(troop.toString());
+    return troop.id;
   }
   searchMonkeys(term: string): Monkey[] {
     let monkeys: Monkey[] = [];
@@ -78,9 +73,7 @@ export class Region {
       this.troops.forEach(troop => monkeys = monkeys.concat(troop.monkeys));
       return monkeys.find(monkey => monkey.id === id);
     }
-    findTroopById(id: string) {
-      return this.troops.find((troop) => troop.id === id);
-    }
+
   toString(): string {
     return `${this.name} [Troops: ${
       this.troops.length

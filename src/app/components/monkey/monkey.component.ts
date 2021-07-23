@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { AppService } from 'src/app/app.service';
 import { Monkey } from 'src/app/models/monkey.model';
 import { Troop } from 'src/app/models/troop.model';
@@ -15,19 +15,18 @@ export class MonkeyComponent implements OnInit, OnDestroy{
   monkeySubscription!: Subscription;
   //monkey$?: Observable<Monkey>;
   myTroop!: Troop;
-  
+
   constructor(private appService: AppService) { }
 
   ngOnInit(): void {
     this.monkeySubscription = this.appService.activeMonkey$.subscribe(monkey => this.monkey = monkey);
   }
-  
+
   findMyTroop(): void {
    if (!this.monkey) return;
-   const troop = this.appService.findTroop(this.monkey.troopId);
+   const troop = this.appService.findTroopById(this.monkey.troopId);
    if (troop) {
      this.myTroop = troop;
-     troop.name = 'St Michael';
      console.log('Troop', troop);
    }
   }

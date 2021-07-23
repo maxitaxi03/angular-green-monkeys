@@ -4,6 +4,6 @@ export interface IMonkey {
     name: string,
     age: number,
     weight: number,
-    gender: string,
-    status?: boolean
+    gender: 'male' | 'female',
+    isAlive: boolean
 }

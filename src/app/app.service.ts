@@ -3,8 +3,7 @@ import { Region } from './models/region.model';
 import { Troop } from './models/troop.model';
 import { Monkey } from './models/monkey.model';
 import { Observable, of, BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { IMonkey } from './components/interfaces/monkey.interface';
+import { IMonkey } from './interfaces/monkey.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +12,8 @@ export class AppService {
   private _region!: Region;
   private _activeTroop$!: Observable<Troop>;
   private _activeMonkey$!: Observable<Monkey>;
-  
-  /***************************BEHAVIORSUBJECT*******************************/ 
+
+  /***************************BEHAVIORSUBJECT*******************************/
   private activeMonkeySource = new BehaviorSubject(new Monkey());
   activeMonkey$ = this.activeMonkeySource.asObservable();
   /***************************BEHAVIORSUBJECT*******************************/
@@ -26,6 +25,11 @@ export class AppService {
   get activeTroop(): Observable<Troop> {
     return this._activeTroop$;
   }
+  get troopList(): Observable<{id: string, name: string, regionId: string}[]> {
+    return of(
+      this._region.troops.map(({ id, name, regionId }) => ({id, name, regionId})) // Object destructuring
+    );
+  }
   set activeTroop(troop: Observable<Troop>) {
     this._activeTroop$ = troop;
   }
@@ -35,12 +39,12 @@ export class AppService {
   set activeMonkey(monkey: Observable<Monkey>) {
     this._activeMonkey$ = monkey;
   }
- /***************************BEHAVIORSUBJECT*******************************/ 
+ /***************************BEHAVIORSUBJECT*******************************/
   activeMonkeyB(monkey: Monkey) {
     this.activeMonkeySource.next(monkey);
   }
  /***************************BEHAVIORSUBJECT*******************************/
-  
+
   searchTroops(term: string): Observable<Troop[]> {
     if (!term.trim()) {
       // if not search term, return empty troop array.
@@ -62,57 +66,38 @@ export class AppService {
   createRegion(name: string): void {
     this._region = new Region(name);
   }
-  addNewTroopToRegion(name: string): void {
+  addNewTroopToRegion(name?: string): void {
     this._region.createNewTroop(name);
   }
-  findTroop(name: string): Troop | undefined {
+  findTroopByName(name: string): Troop | undefined {
     return this._region.findTroop(name);
   }
-  
+  findTroopById(id: string): Troop | undefined {
+    return this._region.findTroopById(id);
+  }
   saveMonkey(data: IMonkey): string {
-    let monkeyId = -1 + '';
+    let monkeyId = '-1';
     const troop = this._region.findTroopById(data.troopId);
     if (!troop) {
-    return monkeyId; // Can't add monkey to an invalid troop;
+      return monkeyId; // Can't add monkey to an invalid troop;
     }
     if (!data.id) { // We are creating a new monkey
-    let monkey = new Monkey(data.age, data.name, data.weight,  data.troopId, );
-    troop.monkeys.push(monkey);
-    monkeyId = monkey.id;
-    } else { // we are updating an existing monkey
-    // find this monkey in troop
-    // update the relevant fields
-    // return the monkey id
-    const monkey = this._region.findMonkeyById(data.id);
-    if (monkey) {
-      // monkey.id = data.id;
-      // monkey.name = data.name;
-      // monkey.age = data.age;
-      // monkey.troopId = data.troopId;
-      // monkey.gender = data.gender;
-      // monkey.weight = data.weight;
-      // monkeyId = monkey.id;
-      data.id = monkey.id;
-      data.name = monkey.name;
-      data.age = monkey.age;
-      data.gender = monkey.gender;
-      data.troopId = monkey.troopId;
-
+      let monkey = Monkey.fromIMonkey(data);
+      troop.monkeys.push(monkey);
+      monkeyId = monkey.id;
+    } else {
+      const monkey = this._region.findMonkeyById(data.id);
+      if (monkey) {
+        monkey.name = data.name;
+        monkey.age = data.age;
+        monkey.gender = data.gender;
+        monkey.weight = data.weight;
+        // The rest of the app might want to know that a monkey changed troop
+        if (monkey.troopId !== data.troopId) {
+          monkey.troopId = data.troopId;
+        }
+      }
     }
-    
+    return monkeyId;
   }
-  return monkeyId; 
-    }
-
-
-
-  // fetchOrders = async (userId: any) => {
-  //   return `${userId}'s order data`;
-  // };
-  // user$ = of({ uid: Math.random() });
-  // orders$ = this.user$.pipe(
-  //   map((user) => {
-  //     return this.fetchOrders(user.uid);
-  //   })
-  // );
 }

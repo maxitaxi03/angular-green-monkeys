@@ -1,9 +1,15 @@
 <div style="margin: 10px; min-width: 50%;">
   <app-troop-search></app-troop-search>
+  <button (click)="addNewTroop()">Create Troop</button>
 </div>
 <div style="margin: 10px; min-width: 50%;">
   <app-monkey-search></app-monkey-search>
 </div>
+<div style="margin: 10px; min-width: 50%;">
+  <button (click)="showMonkeyForm = !showMonkeyForm;">Add Monkey</button>
+  <app-monkey-form *ngIf="showMonkeyForm"></app-monkey-form>
+</div>
+
 <div style="margin: 10px; background-color: orange;">
   <region (troopSelected)="onTroopSelected($event)"></region>
 </div>

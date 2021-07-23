@@ -24,9 +24,9 @@ export class TroopSearchComponent implements OnInit {
     this.troops$ = this.searchTerms.pipe(
       // wait 300ms after each keystroke before considering the term
       debounceTime(300),
-      
+
       // Todo Only search if 3 characters are entered
-      
+
       // ignore new term if same as previous term
       distinctUntilChanged(),
 
@@ -34,10 +34,11 @@ export class TroopSearchComponent implements OnInit {
       switchMap((term: string) => this.appService.searchTroops(term)),
     );
   }
-  
+
   onTroopSelected(troop: Troop): void {
     console.log(troop.name);
     this.appService.activeTroop = of<Troop>(troop);
+    this.searchTerms.next('');
     // Todo set as activeTroop on AppService
   }
 

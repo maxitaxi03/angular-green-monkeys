@@ -14,7 +14,7 @@ export class TroopComponent implements OnInit,
   troop$?: Observable<Troop>;
   @Output() monkeySelected = new EventEmitter<Monkey>();
   toggleCard = false;
-  
+
   selectedMonkey?: Monkey;
   logger = '';
   constructor(private appService: AppService) {}
@@ -26,8 +26,8 @@ export class TroopComponent implements OnInit,
   // https://angular.io/guide/lifecycle-hooks#docheck
   ngDoCheck(): void {
     this.troop$ = this.appService.activeTroop;
-    this.troop$?.subscribe(
-      (troop: Troop) => console.log('TroopComponent Troop', troop));
+    // this.troop$?.subscribe(
+    //   (troop: Troop) => console.log('TroopComponent Troop', troop.toString()));
   }
   populate(): void {
     this.troop$?.subscribe(
@@ -56,8 +56,8 @@ export class TroopComponent implements OnInit,
           this.monkeySelected.emit(monkey);
           this.selectedMonkey = monkey;
         }
-      }); 
+      });
   }
   ngOnDestroy(): void {}
-   
+
 }
