@@ -11,6 +11,7 @@ import { TroopSearchComponent } from './components/troop-search/troop-search.com
 import { MonkeySearchComponent } from './components/monkey-search/monkey-search.component';
 import { MonkeyFormComponent } from './components/monkey-form/monkey-form.component';
 import { FormsModule } from '@angular/forms';
+import { PageErrorComponent } from './components/page-error/page-error.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { FormsModule } from '@angular/forms';
     TroopSearchComponent,
     MonkeySearchComponent,
     MonkeyFormComponent,
+    PageErrorComponent,
   ],
   imports: [
     BrowserModule,

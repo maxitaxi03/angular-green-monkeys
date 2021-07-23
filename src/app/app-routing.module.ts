@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TroopComponent } from './components/troop/troop.component';
 import { MonkeyComponent } from './components/monkey/monkey.component';
 import { MonkeyFormComponent } from './components/monkey-form/monkey-form.component';
+import { PageErrorComponent } from './components/page-error/page-error.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
   },
   // may need to do a nested route - id will be the child of both troops and monkeys
   { path: 'monkeys', component: MonkeyComponent },
+  { path: '**', component: PageErrorComponent },
 ];
 
 @NgModule({
