@@ -18,7 +18,7 @@
       <th scope="col">Is Mutant?</th>
     </tr>
     <tr *ngFor="let monkey of (troop$ | async)?.monkeys">
-      <td (click)="onMonkeySelect(monkey.id); toggleCard = !toggleCard">{{ monkey.name | titlecase }}</td>
+      <td (click)="onMonkeySelect(monkey.id); toggleCard = !toggleCard" routerLink="/monkeys/id">{{ monkey.name | titlecase }}</td>
       <td>{{ monkey.gender | titlecase }}</td>
       <td>{{ monkey.age }}</td>
       <td>{{ monkey.isAlive ? 'Alive' : 'Dead' }}</td>
