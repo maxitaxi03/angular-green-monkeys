@@ -13,7 +13,6 @@ const routes: Routes = [
       {
         path: 'id',
         component: TroopComponent,
-
         children: [
           {
             path: 'monkeys',
@@ -23,6 +22,7 @@ const routes: Routes = [
         ],
       },
     ],
+   // troops/troopid/monkeys/monkeyid/monkeyedit
   },
   // may need to do a nested route - id will be the child of both troops and monkeys
   { path: 'monkeys', component: MonkeyComponent },
