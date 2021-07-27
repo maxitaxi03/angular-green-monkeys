@@ -55,8 +55,10 @@ export class TroopComponent implements OnInit,
         if (monkey) {
           this.monkeySelected.emit(monkey);
           this.selectedMonkey = monkey;
+          console.log(`monkey id is: ${monkey.id}`)
         }
       });
+      
   }
   ngOnDestroy(): void {}
 

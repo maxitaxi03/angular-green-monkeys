@@ -7,25 +7,19 @@ import { PageErrorComponent } from './components/page-error/page-error.component
 
 const routes: Routes = [
   {
-    path: 'troops',
+    path: 'troops/:id',
     component: TroopComponent,
     children: [
       {
-        path: 'id',
-        component: TroopComponent,
-        children: [
-          {
-            path: 'monkeys',
-            component: MonkeyComponent,
-            children: [{ path: 'id', component: MonkeyFormComponent }],
-          },
-        ],
+        path: 'monkeys',
+        component: MonkeyComponent,
       },
     ],
-   // troops/troopid/monkeys/monkeyid/monkeyedit
+
+    // troops/troopid/monkeys/monkeyid/monkeyedit
   },
   // may need to do a nested route - id will be the child of both troops and monkeys
-  { path: 'monkeys', component: MonkeyComponent },
+  { path: 'monkeys/:id', component: MonkeyComponent },
   { path: '**', component: PageErrorComponent },
 ];
 

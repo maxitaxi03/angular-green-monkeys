@@ -6,7 +6,8 @@
     <div style="margin: 10px;">
     <select id="troop-select" (change)="onTroopSelected($event)">
       <option value="">--Please choose a troop--</option>
-      <option *ngFor="let troop of region.troops" [value]="troop.name" routerLink="/troops">{{troop.name}}</option>
+      <!--option *ngFor="let troop of region.troops" [value]="troop.name" [routerLink]="['/troops', troop.id]">{{troop.name}}</option-->
+      <option *ngFor="let troop of region.troops" [value]="troop.name" routerLink="/troops/{{troop.id}}">{{troop.name}}</option>
     </select>
     </div>
 </div>

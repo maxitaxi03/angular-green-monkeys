@@ -30,6 +30,7 @@ export class RegionComponent implements OnInit {
       if (troop) {
         this.troopSelected.emit(troop); 
         this.selectedTroop = troop; 
+        console.log(`troop id is: ${troop.id}`);
       }
     }
   }
