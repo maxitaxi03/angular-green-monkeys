@@ -20,6 +20,7 @@ const routes: Routes = [
   },
   // may need to do a nested route - id will be the child of both troops and monkeys
   { path: 'monkeys/:id', component: MonkeyComponent },
+  {path: '', redirectTo: '/troops/:id', pathMatch: 'full'},
   { path: '**', component: PageErrorComponent },
 ];
 
