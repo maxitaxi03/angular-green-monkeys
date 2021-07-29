@@ -5,6 +5,7 @@ import { AppService } from 'src/app/app.service';
 import { Monkey } from 'src/app/models/monkey.model';
 import { Troop } from 'src/app/models/troop.model';
 import { of, Observable } from 'rxjs';
+import { IMonkey } from 'src/app/interfaces/monkey.interface';
 
 @Component({
   selector: 'monkey',
@@ -13,9 +14,10 @@ import { of, Observable } from 'rxjs';
 })
 export class MonkeyComponent implements OnInit, OnDestroy{
   @Input('monkey') monkey?: Monkey;
-  //@Input('monkey$') monkey$?: Observable<Monkey>;
+  
+  @Input('monkey$') monkey$?: Observable<Monkey>;
   monkeySubscription!: Subscription;
-  monkey$?: Observable<Monkey>;
+  
   myTroop!: Troop;
 
   constructor(private appService: AppService) { }

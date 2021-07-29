@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { AppService } from '../app.service';
 import { Monkey } from '../models/monkey.model';
+import { IMonkey } from '../interfaces/monkey.interface';
 
 @Component({
   selector: 'app-monkey-detail',
@@ -14,7 +15,9 @@ export class MonkeyDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-    private appService: AppService) { }
+    private appService: AppService,
+    private router: Router,
+    ) { }
 
   ngOnInit(): void {
     this.getMonkey();
@@ -33,6 +36,10 @@ export class MonkeyDetailComponent implements OnInit {
   }
   editMonkey(): void {
     // route to /monkeys/id/edit from here
+    const id = this.route.snapshot.paramMap.get('id');
+    this.router.navigate([`/monkeys/${this.monkey.id}/edit`]);
+    
+
   }
   goBack(): void {
     this.location.back();

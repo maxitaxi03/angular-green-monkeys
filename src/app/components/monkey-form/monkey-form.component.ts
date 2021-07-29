@@ -27,7 +27,7 @@ export class MonkeyFormComponent implements OnInit, OnDestroy  {
   }
 
   onTroopSelected(event: any): void {
-    // this.monkeyForm.troopId = event.target.value;
+     //this.monkeyForm.troopId = event.target.value;
   }
   onSubmit() {
     if (this.form.valid) {
