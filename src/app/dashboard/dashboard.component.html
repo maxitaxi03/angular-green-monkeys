@@ -1,0 +1,33 @@
+<div style="margin: 10px; min-width: 50%;">
+    <app-troop-search></app-troop-search>
+    <button (click)="addNewTroop()">Create Troop</button>
+  </div>
+  <div style="margin: 10px; min-width: 50%;">
+    <app-monkey-search></app-monkey-search>
+  </div>
+  <div style="margin: 10px; min-width: 50%;">
+    <button (click)="showMonkeyForm = !showMonkeyForm;">Add Monkey</button>
+    <app-monkey-form *ngIf="showMonkeyForm"></app-monkey-form>
+  </div>
+  
+  <div style="margin: 10px; background-color: orange;">
+    <region (troopSelected)="onTroopSelected($event)" ></region>
+  </div>
+  <!--div style="margin: 10px; background-color: grey;" *ngIf="activeTroop$ | async">
+    <app-troop (monkeySelected)="onMonkeySelected($event)"></app-troop>
+    <h5>Region: {{region?.name}}</h5>
+  </div-->
+  
+  <!--div style="margin: 10px; padding: 5px;">
+    <statistics [region]="region"></statistics>
+  </div-->
+  
+  <!--div style="margin: 10px; padding: 5px;">
+    <monkey [monkey]="activeMonkey"></monkey>
+  </div-->
+  
+  <nav>
+    <a routerLink="/troops" routerLinkActive="active" style="padding: 10px; text-decoration: none;">Troop Table</a>
+    <a routerLink="/monkeys" routerLinkActive="active" style="padding: 10px; text-decoration: none;">Monkey Card</a>
+  </nav>
+  

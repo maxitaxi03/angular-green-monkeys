@@ -9,6 +9,18 @@
       <!--option *ngFor="let troop of region.troops" [value]="troop.name" [routerLink]="['/troops', troop.id]">{{troop.name}}</option-->
       <option *ngFor="let troop of region.troops" [value]="troop.name" routerLink="/troops/{{troop.id}}">{{troop.name}}</option>
     </select>
+    <table class="table table-hover" style="margin-top: 10px;">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Monkey Count</th>
+      </tr>
+      <tr *ngFor="let troop of region.troops"> 
+        <td><a routerLink="/troops/{{troop.id}}">{{ troop.id }}</a></td>
+        <td>{{ troop.name }}</td>
+        <td>{{ troop.totalMonkeys() }}</td>
+      </tr>
+    </table>
     </div>
 </div>
 

@@ -1,0 +1,5 @@
+<button (click)="goBack()">Monkeys</button>
+<button (click)="editMonkey()">Edit</button>
+<div *ngIf="monkey">
+    <monkey [monkey]="monkey"></monkey>
+</div>

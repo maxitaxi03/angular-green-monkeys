@@ -1,8 +1,10 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AppService } from 'src/app/app.service';
 import { Monkey } from 'src/app/models/monkey.model';
 import { Troop } from 'src/app/models/troop.model';
+import { of, Observable } from 'rxjs';
 
 @Component({
   selector: 'monkey',
@@ -13,13 +15,20 @@ export class MonkeyComponent implements OnInit, OnDestroy{
   @Input('monkey') monkey?: Monkey;
   //@Input('monkey$') monkey$?: Observable<Monkey>;
   monkeySubscription!: Subscription;
-  //monkey$?: Observable<Monkey>;
+  monkey$?: Observable<Monkey>;
   myTroop!: Troop;
 
   constructor(private appService: AppService) { }
 
   ngOnInit(): void {
-    this.monkeySubscription = this.appService.activeMonkey$.subscribe(monkey => this.monkey = monkey);
+    //this.monkeySubscription = this.appService.activeMonkey$.subscribe(monkey => this.monkey = monkey);
+    if (this.monkey) {
+      this.monkey$ = of (this.monkey);
+    }
+    else {
+      this.monkey$ = this.appService.activeMonkey;
+      
+    }
   }
 
   findMyTroop(): void {
@@ -31,6 +40,6 @@ export class MonkeyComponent implements OnInit, OnDestroy{
    }
   }
   ngOnDestroy(): void {
-    this.monkeySubscription.unsubscribe();
+   // this.monkeySubscription.unsubscribe();
   }
 }

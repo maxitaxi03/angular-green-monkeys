@@ -75,6 +75,9 @@ export class AppService {
   findTroopById(id: string): Troop | undefined {
     return this._region.findTroopById(id);
   }
+  findMonkeyById(id: string): Monkey | undefined {
+    return this._region.findMonkeyById(id);
+  }
   saveMonkey(data: IMonkey): string {
     let monkeyId = '-1';
     const troop = this._region.findTroopById(data.troopId);

@@ -28,8 +28,8 @@ export class RegionComponent implements OnInit {
     else {
       let troop = this.region.troops.find(troop => troop.name === name);
       if (troop) {
-        this.troopSelected.emit(troop); 
-        this.selectedTroop = troop; 
+        // this.troopSelected.emit(troop); 
+        // this.selectedTroop = troop; 
         console.log(`troop id is: ${troop.id}`);
       }
     }
