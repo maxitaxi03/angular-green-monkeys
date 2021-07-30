@@ -39,6 +39,7 @@ export class MonkeyFormComponent implements OnInit, OnDestroy  {
         gender: this.monkeyForm.gender,
         isAlive: true
       });
+      
       this.form.reset();
     }
   }

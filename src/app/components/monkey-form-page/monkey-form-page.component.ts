@@ -4,13 +4,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from '../../app.service';
 import { Monkey } from 'src/app/models/monkey.model';
 import { IMonkey } from 'src/app/interfaces/monkey.interface';
+import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-monkey-form-page',
   templateUrl: './monkey-form-page.component.html',
   styleUrls: ['./monkey-form-page.component.css']
 })
 export class MonkeyFormPageComponent implements OnInit {
-  monkey!: IMonkey;
+  monkey!: Monkey;
+  monkeySubscription!: Subscription;
+  troopListSubscription!: Subscription;
+  troops: {id: string, name: string}[] = [];
+
   constructor(
     private route: ActivatedRoute,
     private location: Location,
@@ -19,6 +25,9 @@ export class MonkeyFormPageComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.troopListSubscription = this.appService.troopList.subscribe(list => this.troops = list);
+    this.monkeySubscription = this.appService.activeMonkey$.subscribe(monkey => this.monkey = monkey);
+    
     this.getMonkey();
   }
   getMonkey(): void {
