@@ -1,19 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from '../../app.service';
 import { Monkey } from 'src/app/models/monkey.model';
+import { IMonkey } from 'src/app/interfaces/monkey.interface';
 @Component({
   selector: 'app-monkey-form-page',
   templateUrl: './monkey-form-page.component.html',
   styleUrls: ['./monkey-form-page.component.css']
 })
 export class MonkeyFormPageComponent implements OnInit {
-  monkey!: Monkey;
+  monkey!: IMonkey;
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-    private appService: AppService) { }
+    private appService: AppService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
     this.getMonkey();
@@ -28,6 +31,16 @@ export class MonkeyFormPageComponent implements OnInit {
       this.monkey = monkey;
     }
     console.log(monkey);
+  }
+  editMonkey(): void {
+    // route to /monkeys/id/edit from here
+    const id = this.route.snapshot.paramMap.get('id');
+    this.router.navigate([`/monkeys/${this.monkey.id}/edit`]);
+    
+
+  }
+  goBack(): void {
+    this.location.back();
   }
  
 }
