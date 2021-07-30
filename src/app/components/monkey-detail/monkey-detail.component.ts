@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { AppService } from '../app.service';
-import { Monkey } from '../models/monkey.model';
-import { IMonkey } from '../interfaces/monkey.interface';
+import { AppService } from '../../app.service';
+import { Monkey } from '../../models/monkey.model';
+import { IMonkey } from '../../interfaces/monkey.interface';
 
 @Component({
   selector: 'app-monkey-detail',

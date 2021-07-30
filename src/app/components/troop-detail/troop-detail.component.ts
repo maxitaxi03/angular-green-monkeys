@@ -1,8 +1,8 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AppService } from '../app.service';
-import { Troop } from '../models/troop.model';
+import { AppService } from '../../app.service';
+import { Troop } from '../../models/troop.model';
 
 
 @Component({

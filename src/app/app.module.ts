@@ -12,9 +12,10 @@ import { MonkeySearchComponent } from './components/monkey-search/monkey-search.
 import { MonkeyFormComponent } from './components/monkey-form/monkey-form.component';
 import { FormsModule } from '@angular/forms';
 import { PageErrorComponent } from './components/page-error/page-error.component';
-import { TroopDetailComponent } from './troop-detail/troop-detail.component';
+import { TroopDetailComponent } from './components/troop-detail/troop-detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { MonkeyDetailComponent } from './monkey-detail/monkey-detail.component';
+import { MonkeyDetailComponent } from './components/monkey-detail/monkey-detail.component';
+import { MonkeyFormPageComponent } from './components/monkey-form-page/monkey-form-page.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { MonkeyDetailComponent } from './monkey-detail/monkey-detail.component';
     TroopDetailComponent,
     DashboardComponent,
     MonkeyDetailComponent,
+    MonkeyFormPageComponent,
   ],
   imports: [
     BrowserModule,
