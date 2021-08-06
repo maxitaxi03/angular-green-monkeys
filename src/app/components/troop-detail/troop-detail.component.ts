@@ -37,5 +37,4 @@ export class TroopDetailComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
-
 }

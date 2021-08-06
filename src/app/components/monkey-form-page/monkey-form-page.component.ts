@@ -9,47 +9,50 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-monkey-form-page',
   templateUrl: './monkey-form-page.component.html',
-  styleUrls: ['./monkey-form-page.component.css']
+  styleUrls: ['./monkey-form-page.component.css'],
 })
 export class MonkeyFormPageComponent implements OnInit {
   monkey!: Monkey;
   monkeySubscription!: Subscription;
   troopListSubscription!: Subscription;
-  troops: {id: string, name: string}[] = [];
+  troops: { id: string; name: string }[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private location: Location,
     private appService: AppService,
     private router: Router
-    ) { }
+  ) {}
 
   ngOnInit(): void {
-    this.troopListSubscription = this.appService.troopList.subscribe(list => this.troops = list);
-    this.monkeySubscription = this.appService.activeMonkey$.subscribe(monkey => this.monkey = monkey);
-    
+    this.troopListSubscription = this.appService.troopList.subscribe(
+      (list) => (this.troops = list)
+    );
+    this.monkeySubscription = this.appService.activeMonkey$.subscribe(
+      (monkey) => (this.monkey = monkey)
+    );
+
     this.getMonkey();
   }
   getMonkey(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (!id) {
-      return;
+      let monkey = new Monkey();
+    } 
+    else {
+      const monkey = this.appService.findMonkeyById(id);
+      if (monkey) {
+        this.monkey = monkey;
+      }
+      console.log(monkey);
     }
-    const monkey = this.appService.findMonkeyById(id);
-    if (monkey) {
-      this.monkey = monkey;
-    }
-    console.log(monkey);
   }
   editMonkey(): void {
     // route to /monkeys/id/edit from here
     const id = this.route.snapshot.paramMap.get('id');
     this.router.navigate([`/monkeys/${this.monkey.id}/edit`]);
-    
-
   }
   goBack(): void {
     this.location.back();
   }
- 
 }
