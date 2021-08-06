@@ -25,6 +25,7 @@ export class MonkeyFormPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getMonkey();
     this.troopListSubscription = this.appService.troopList.subscribe(
       (list) => (this.troops = list)
     );
@@ -32,7 +33,7 @@ export class MonkeyFormPageComponent implements OnInit {
       (monkey) => (this.monkey = monkey)
     );
 
-    this.getMonkey();
+    
   }
   getMonkey(): void {
     const id = this.route.snapshot.paramMap.get('id');

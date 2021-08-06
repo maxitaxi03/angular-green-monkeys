@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   // may need to do a nested route - id will be the child of both troops and monkeys
   // { path: 'monkeys/:id', component: MonkeyDetailComponent },
-  { path: 'monkeys/:id/edit', component: MonkeyFormPageComponent },
+  { path: 'monkeys/:id', component: MonkeyFormPageComponent },
   { path: 'monkeys/create', component: MonkeyFormPageComponent },
   //{ path: 'monkeys/:id/edit', component: MonkeyFormComponent },
   
