@@ -16,6 +16,7 @@ export class MonkeyFormPageComponent implements OnInit {
   troop!: Troop;
   monkeySubscription!: Subscription;
   troopListSubscription!: Subscription;
+  
   troops: { id: string; name: string }[] = [];
 
   constructor(
@@ -34,7 +35,7 @@ export class MonkeyFormPageComponent implements OnInit {
     this.monkeySubscription = this.appService.activeMonkey$.subscribe(
       (monkey) => (this.monkey = monkey)
     );
-
+  
   }
   getMonkey(): void {
     const id = this.route.snapshot.paramMap.get('id');

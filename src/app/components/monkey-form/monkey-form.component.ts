@@ -22,13 +22,14 @@ export class MonkeyFormComponent implements OnInit, OnDestroy  {
   troops: {id: string, name: string}[] = [];
 
   constructor(
-    private route: ActivatedRoute,
     private location: Location,
     private appService: AppService,
-    private router: Router,
-    ) { }
+    ) { 
+      
+    }
   ngOnInit(): void {
     this.troopListSubscription = this.appService.troopList.subscribe(list => this.troops = list);
+    // this.monkeySubscription may be subscribing to a blank or nonexistent monkey - which would return a blank monkey form
     this.monkeySubscription = this.appService.activeMonkey$.subscribe(monkey => this.monkey = monkey);
     console.log(`the active monkey in appservice is ${this.monkey.name}`);
   }
