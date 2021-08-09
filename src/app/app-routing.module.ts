@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TroopComponent } from './components/troop/troop.component';
-import { MonkeyComponent } from './components/monkey/monkey.component';
-import { MonkeyFormComponent } from './components/monkey-form/monkey-form.component';
 import { PageErrorComponent } from './components/page-error/page-error.component';
 import { TroopDetailComponent } from './components/troop-detail/troop-detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -16,10 +13,11 @@ const routes: Routes = [
     component: TroopDetailComponent,
   },
   // may need to do a nested route - id will be the child of both troops and monkeys
-  // { path: 'monkeys/:id', component: MonkeyDetailComponent },
-  { path: 'monkeys/:id', component: MonkeyFormPageComponent },
-  { path: 'monkeys/create', component: MonkeyFormPageComponent },
-  //{ path: 'monkeys/:id/edit', component: MonkeyFormComponent },
+  { path: 'monkeys/:id', component: MonkeyDetailComponent },
+  // { path: 'monkeys/:id', component: MonkeyFormPageComponent },
+  { path: 'monkeys/:id/edit', component: MonkeyFormPageComponent },
+  { path: 'troops/:id/create', component: MonkeyFormPageComponent },
+  
   
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   { path: '**', component: PageErrorComponent },

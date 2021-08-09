@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from '../../app.service';
 import { Troop } from '../../models/troop.model';
 
@@ -13,11 +13,11 @@ import { Troop } from '../../models/troop.model';
 export class TroopDetailComponent implements OnInit {
   troop!: Troop;
 
-
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-    private appService: AppService
+    private appService: AppService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -36,5 +36,9 @@ export class TroopDetailComponent implements OnInit {
   }
   goBack(): void {
     this.location.back();
+  }
+  addMonkey(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.router.navigate([`/troops/${this.troop.id}/create`]);
   }
 }

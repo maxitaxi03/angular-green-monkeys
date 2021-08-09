@@ -3,8 +3,8 @@ import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from '../../app.service';
 import { Monkey } from 'src/app/models/monkey.model';
-import { IMonkey } from 'src/app/interfaces/monkey.interface';
 import { Subscription } from 'rxjs';
+import { Troop } from 'src/app/models/troop.model';
 
 @Component({
   selector: 'app-monkey-form-page',
@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs';
 })
 export class MonkeyFormPageComponent implements OnInit {
   monkey!: Monkey;
+  troop!: Troop;
   monkeySubscription!: Subscription;
   troopListSubscription!: Subscription;
   troops: { id: string; name: string }[] = [];
@@ -26,6 +27,7 @@ export class MonkeyFormPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMonkey();
+    this.getTroop()
     this.troopListSubscription = this.appService.troopList.subscribe(
       (list) => (this.troops = list)
     );
@@ -33,7 +35,6 @@ export class MonkeyFormPageComponent implements OnInit {
       (monkey) => (this.monkey = monkey)
     );
 
-    
   }
   getMonkey(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -47,6 +48,17 @@ export class MonkeyFormPageComponent implements OnInit {
       }
       console.log(monkey);
     }
+  }
+  getTroop(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (!id) {
+      return;
+    }
+    const troop = this.appService.findTroopById(id);
+    if (troop) {
+      this.troop = troop;
+    }
+    console.log(troop);
   }
   editMonkey(): void {
     // route to /monkeys/id/edit from here

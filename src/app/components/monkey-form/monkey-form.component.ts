@@ -3,6 +3,8 @@ import { AppService } from 'src/app/app.service';
 import { monkeyForm } from 'src/app/models/monkey-form.model';
 import { IMonkey } from '../../interfaces/monkey.interface';
 import { Subscription } from 'rxjs';
+import { Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-monkey-form',
@@ -19,7 +21,12 @@ export class MonkeyFormComponent implements OnInit, OnDestroy  {
   troopListSubscription!: Subscription;
   troops: {id: string, name: string}[] = [];
 
-  constructor(private appService: AppService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private location: Location,
+    private appService: AppService,
+    private router: Router,
+    ) { }
   ngOnInit(): void {
     this.troopListSubscription = this.appService.troopList.subscribe(list => this.troops = list);
     this.monkeySubscription = this.appService.activeMonkey$.subscribe(monkey => this.monkey = monkey);
@@ -39,8 +46,8 @@ export class MonkeyFormComponent implements OnInit, OnDestroy  {
         gender: this.monkeyForm.gender,
         isAlive: true
       });
-      
       this.form.reset();
+      this.location.back();
     }
   }
 
