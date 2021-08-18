@@ -69,28 +69,6 @@ export class Monkey {
         }
         return this.isAlive;
     }
-    /*
-
-    totAge(): number {
-        let totAge: number = 0;
-        totAge += this.age;
-        return totAge;
-    }
-    totWeight(): number {
-        let totWeight: number = 0;
-        totWeight += this.weight;
-        return totWeight;
-    }
-    totMutants(): number {
-        let totMutants: number = 0;
-        totMutants += this.numOfMutants;
-        return totMutants;
-    }
-    totNormals(): number {
-        let totNormals: number = 0;
-        totNormals += this.numOfNormals;
-        return totNormals;
-
-    } */
+    
 
 }

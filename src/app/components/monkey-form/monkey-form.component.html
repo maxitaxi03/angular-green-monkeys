@@ -5,7 +5,6 @@
       <option value="">--Please choose a troop--</option>
       <option *ngFor="let troop of troops" [value]="troop.id">{{troop.name}}</option>
     </select>
-
     <label for="name">Name</label>
     <input type="text" id="name" name="name" [(ngModel)]="monkeyForm.name" required />
 

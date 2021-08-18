@@ -22,11 +22,11 @@ export class MonkeyFormComponent implements OnInit, OnDestroy  {
   troops: {id: string, name: string}[] = [];
 
   constructor(
-    private route: ActivatedRoute,
     private location: Location,
     private appService: AppService,
-    private router: Router,
-    ) { }
+    ) { 
+      
+    }
   ngOnInit(): void {
     this.troopListSubscription = this.appService.troopList
     .subscribe( list => {
