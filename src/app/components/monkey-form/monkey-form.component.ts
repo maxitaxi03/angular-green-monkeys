@@ -15,9 +15,9 @@ export class MonkeyFormComponent implements OnInit, OnDestroy  {
 
   monkeyForm: monkeyForm = new monkeyForm();
   @Input('monkey')monkey!: IMonkey;
-  activeMonkey!: IMonkey;
+  // activeMonkey!: IMonkey;
   @ViewChild('f') form: any;
-  monkeySubscription!: Subscription;
+  // monkeySubscription!: Subscription;
   troopListSubscription!: Subscription;
   troops: {id: string, name: string}[] = [];
 
@@ -28,10 +28,28 @@ export class MonkeyFormComponent implements OnInit, OnDestroy  {
     private router: Router,
     ) { }
   ngOnInit(): void {
-    this.troopListSubscription = this.appService.troopList.subscribe(list => this.troops = list);
-    this.monkeySubscription = this.appService.activeMonkey$.subscribe(monkey => this.monkey = monkey);
+    this.troopListSubscription = this.appService.troopList
+    .subscribe( list => {
+      this.troops = list;
+      this.initForm();
+    });
+    
+    //this.monkeySubscription = this.appService.activeMonkey$.subscribe(monkey => this.monkey = monkey);
     console.log(`the active monkey in appservice is ${this.monkey.name}`);
   }
+
+  initForm(): void {
+    // Are we editing a monkey or creating a new one?
+    if (this.monkey && this.monkey.id) {
+      this.monkeyForm.name = this.monkey.name;
+      this.monkeyForm.age = this.monkey.age;
+    } else {
+      this.monkeyForm.name = '';
+      this.monkeyForm.age = 0;
+    }
+  }
+
+
 
   onTroopSelected(event: any): void {
      //this.monkeyForm.troopId = event.target.value;
@@ -39,6 +57,7 @@ export class MonkeyFormComponent implements OnInit, OnDestroy  {
   onSubmit() {
     if (this.form.valid) {
       this.appService.saveMonkey({
+        id: this.monkey?.id,
         name: this.monkeyForm.name,
         age: this.monkeyForm.age,
         weight: this.monkeyForm.weight,
@@ -52,7 +71,7 @@ export class MonkeyFormComponent implements OnInit, OnDestroy  {
   }
 
   ngOnDestroy(): void {
-    this.monkeySubscription.unsubscribe();
+    // this.monkeySubscription.unsubscribe();
     this.troopListSubscription.unsubscribe();
   }
 

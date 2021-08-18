@@ -16,7 +16,8 @@ const routes: Routes = [
   { path: 'monkeys/:id', component: MonkeyDetailComponent },
   // { path: 'monkeys/:id', component: MonkeyFormPageComponent },
   { path: 'monkeys/:id/edit', component: MonkeyFormPageComponent },
-  { path: 'troops/:id/create', component: MonkeyFormPageComponent },
+  { path: 'monkeys/create', component: MonkeyFormPageComponent },
+  { path: 'troops/:id/create-monkey', component: MonkeyFormPageComponent },
   
   
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},

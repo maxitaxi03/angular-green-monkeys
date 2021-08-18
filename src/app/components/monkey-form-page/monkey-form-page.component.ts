@@ -31,9 +31,9 @@ export class MonkeyFormPageComponent implements OnInit {
     this.troopListSubscription = this.appService.troopList.subscribe(
       (list) => (this.troops = list)
     );
-    this.monkeySubscription = this.appService.activeMonkey$.subscribe(
-      (monkey) => (this.monkey = monkey)
-    );
+    // this.monkeySubscription = this.appService.activeMonkey$.subscribe(
+    //   (monkey) => (this.monkey = monkey)
+    // );
 
   }
   getMonkey(): void {

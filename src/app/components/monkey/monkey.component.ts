@@ -23,6 +23,7 @@ export class MonkeyComponent implements OnInit, OnDestroy{
   constructor(private appService: AppService) { }
 
   ngOnInit(): void {
+    this.findMyTroop();
     //this.monkeySubscription = this.appService.activeMonkey$.subscribe(monkey => this.monkey = monkey);
     if (this.monkey) {
       this.monkey$ = of (this.monkey);
