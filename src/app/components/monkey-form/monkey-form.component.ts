@@ -39,13 +39,19 @@ export class MonkeyFormComponent implements OnInit, OnDestroy  {
   }
 
   initForm(): void {
-    // Are we editing a monkey or creating a new one?
+    // editing or creating new monkey is id isn't present
     if (this.monkey && this.monkey.id) {
       this.monkeyForm.name = this.monkey.name;
       this.monkeyForm.age = this.monkey.age;
+      this.monkeyForm.weight = this.monkey.weight;
+      this.monkeyForm.gender = this.monkey.gender;
+      this.monkeyForm.troopId = this.monkey.troopId;
     } else {
       this.monkeyForm.name = '';
       this.monkeyForm.age = 0;
+      this.monkeyForm.weight = 0;
+      this.monkeyForm.gender = 'male';
+      this.monkeyForm.troopId = '';
     }
   }
 

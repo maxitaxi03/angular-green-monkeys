@@ -32,17 +32,10 @@ export class MonkeyFormPageComponent implements OnInit {
     this.troopListSubscription = this.appService.troopList.subscribe(
       (list) => (this.troops = list)
     );
-<<<<<<< HEAD
     // this.monkeySubscription = this.appService.activeMonkey$.subscribe(
     //   (monkey) => (this.monkey = monkey)
     // );
 
-=======
-    this.monkeySubscription = this.appService.activeMonkey$.subscribe(
-      (monkey) => (this.monkey = monkey)
-    );
-  
->>>>>>> c5edf715b0d5fc0089bafc8eb5e5412c68a102c1
   }
   getMonkey(): void {
     const id = this.route.snapshot.paramMap.get('id');
