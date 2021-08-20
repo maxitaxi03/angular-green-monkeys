@@ -22,14 +22,16 @@
     </select>
 
     <div class="custom-control custom-radio">
-      <input id="male" type="radio" class="custom-control-input" value="male" name="gender" ngModel required>
-      <label class="custom-control-label" for="male">Male</label>
+      <input id="mutant" type="radio" class="custom-control-input" value="mutant" name="isMutant" ngModel required>
+      <label class="custom-control-label" for="mutant">Mutant</label> <br>
+      <input id="notMutant" type="radio" class="custom-control-input" value="notMutant" name="isMutant" ngModel required> 
+      <label class="custom-control-label" for="notMutant">Not Mutant</label>
    </div>
 
-   <div class="custom-control custom-radio">
-      <input id="female" type="radio" class="custom-control-input" value="female" name="gender" ngModel required> 
-      <label class="custom-control-label" for="female">Female</label>
-   </div>
+   <!--div class="custom-control custom-radio">
+      <input id="notMutant" type="radio" class="custom-control-input" value="notMutant" name="notMutant" ngModel required> 
+      <label class="custom-control-label" for="notMutant">Not Mutant</label>
+   </div-->
 
     <button type="submit">Save</button>
     <button type="reset">Reset</button>

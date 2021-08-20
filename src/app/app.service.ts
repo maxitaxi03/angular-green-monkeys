@@ -95,6 +95,7 @@ export class AppService {
         monkey.age = data.age;
         monkey.gender = data.gender;
         monkey.weight = data.weight;
+        monkey.isMutant = data.isMutant;
         // The rest of the app might want to know that a monkey changed troop
         if (monkey.troopId !== data.troopId) {
           monkey.troopId = data.troopId;

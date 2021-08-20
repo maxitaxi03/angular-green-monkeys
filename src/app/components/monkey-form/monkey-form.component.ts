@@ -46,12 +46,14 @@ export class MonkeyFormComponent implements OnInit, OnDestroy  {
       this.monkeyForm.weight = this.monkey.weight;
       this.monkeyForm.gender = this.monkey.gender;
       this.monkeyForm.troopId = this.monkey.troopId;
+      this.monkeyForm.isMutant = this.monkey.isMutant;
     } else {
       this.monkeyForm.name = '';
       this.monkeyForm.age = 0;
       this.monkeyForm.weight = 0;
       this.monkeyForm.gender = 'male';
       this.monkeyForm.troopId = '';
+      this.monkeyForm.isMutant = false;
     }
   }
 
@@ -69,7 +71,8 @@ export class MonkeyFormComponent implements OnInit, OnDestroy  {
         weight: this.monkeyForm.weight,
         troopId: this.monkeyForm.troopId,
         gender: this.monkeyForm.gender,
-        isAlive: true
+        isAlive: true, 
+        isMutant: false,
       });
       this.form.reset();
       this.location.back();

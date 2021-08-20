@@ -5,5 +5,6 @@ export interface IMonkey {
     age: number,
     weight: number,
     gender: 'male' | 'female',
-    isAlive: boolean
+    isAlive: boolean;
+    isMutant: boolean;
 }
