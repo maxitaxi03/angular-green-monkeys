@@ -30,6 +30,7 @@ export class Monkey {
         this.troopId = data.troopId;
         this.weight = data.weight;
         this.isAlive = data.isAlive ? data.isAlive : false;
+        this.isMutant = data.isMutant ? data.isMutant : false;
       } else {
         this.gender = Utils.randomBoolean() ? 'male' : 'female';
         this.name = Utils.randomName(this.gender);

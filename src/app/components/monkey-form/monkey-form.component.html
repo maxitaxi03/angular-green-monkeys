@@ -22,9 +22,9 @@
     </select>
 
     <div class="custom-control custom-radio">
-      <input id="mutant" type="radio" class="custom-control-input" value="mutant" name="isMutant" ngModel required>
+      <input id="mutant" type="radio" class="custom-control-input" value="mutant" name="isMutant" [(ngModel)]="monkeyForm.isMutant" required />
       <label class="custom-control-label" for="mutant">Mutant</label> <br>
-      <input id="notMutant" type="radio" class="custom-control-input" value="notMutant" name="isMutant" ngModel required> 
+      <input id="notMutant" type="radio" class="custom-control-input" value="notMutant" name="isMutant" [(ngModel)]="monkeyForm.isMutant" required> 
       <label class="custom-control-label" for="notMutant">Not Mutant</label>
    </div>
 
